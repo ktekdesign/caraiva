@@ -5,8 +5,9 @@ import 'swiper/css/navigation'
 import Image from 'next/image'
 import { Button, Flex, Title } from '@tremor/react'
 import Link from 'next/link'
+import { memo } from 'react'
 
-export default ({slides}) => (
+const ParallaxSwiper = ({slides}) => (
     <section>
         <Flex className="gap-8 pb-8 centered items-center justify-between">
             <Title className="heading2">Eventos</Title>
@@ -29,3 +30,5 @@ export default ({slides}) => (
         </Swiper>
     </section>
   )
+
+export default memo(ParallaxSwiper)

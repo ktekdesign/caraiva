@@ -22,7 +22,7 @@
   @apply max-w-screen-xl px-8 mx-auto
 }
 section {
-  @apply py-16
+  @apply py-12
 }
 section .grid {
   @apply mb-0
@@ -37,7 +37,7 @@ section .grid {
   }
 }
 .home-banner {
-  min-height: calc(100vh - 80px);
+  min-height: calc(100vh - 150px);
   @apply gap-8
 }
 p {
