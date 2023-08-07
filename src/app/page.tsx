@@ -1,8 +1,11 @@
 "use client"
 import Banner from '@/components/banner'
 import BookingForm from '@/components/booking-form'
+import CardSwiper from '@/components/card-swiper'
 import GalleryComponent from '@/components/gallery'
+import ParallaxSwiper from '@/components/parallax-swiper'
 import Video from '@/components/video'
+import { photos } from '@/utils/photos'
 import { Col, Grid, Title, Text } from '@tremor/react'
 import Slide from 'react-reveal/Slide'
 
@@ -34,6 +37,8 @@ export default function Home() {
         </section>
         <Video />
         <GalleryComponent />
+        <ParallaxSwiper slides={photos} />
+        <CardSwiper slides={photos} />
       </main>
     </>
   )

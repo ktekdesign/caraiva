@@ -18,7 +18,7 @@
 * {
   @apply transition-all duration-200
 }
-main section.centered {
+.centered {
   @apply max-w-screen-xl px-8 mx-auto
 }
 section {
@@ -87,8 +87,14 @@ p {
 }
 
 .copyright {
-  @apply flex justify-between items-center py-4 px-8 max-w-screen-xl mx-auto text-xs
+  @apply flex justify-between items-center py-4 px-8 max-w-screen-xl mx-auto text-xs gap-8
 }
 .play-btn svg {
   @apply w-48 h-48 fill-white
+}
+.parallax {
+  @apply relative h-[34vh] lg:h-[67vh] flex items-center justify-center
+}
+.swiper-button-prev, .swiper-button-next {
+  @apply after:text-white
 }
