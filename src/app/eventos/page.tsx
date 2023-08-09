@@ -1,6 +1,6 @@
 import Banner from '@/components/banner'
 import PageTitle from '@/components/page-title'
-import ProductGrid from '@/components/product-grid'
+import ProductsGrid from '@/components/products-grid'
 import { photos } from '@/utils/photos'
 import { Col, Grid } from '@tremor/react'
 
@@ -14,10 +14,10 @@ export default function Eventos() {
             <PageTitle>Eventos</PageTitle>
           </Col>
         </Grid>
-        <section className='centered flex flex-col gap-16'>
-          {photos.map(photo => (
-            <ProductGrid key={photo} product={photos} />
-          ))}
+        <section className='centered'>
+          
+          <ProductsGrid products={photos} />
+          
         </section>
       </main>
     </>

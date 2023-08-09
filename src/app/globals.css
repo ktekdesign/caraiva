@@ -7,6 +7,7 @@
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
   --color-primary: #800000;
+  --tw-ring-color: #800000;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -15,6 +16,7 @@
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
     --color-primary: #800000;
+    --tw-ring-color: #800000;
   }
 }
 * {
@@ -23,8 +25,11 @@
 body {
   @apply centered-2xl
 }
+main {
+  @apply px-8 xl:px-0
+}
 .centered {
-  @apply inner-centered px-8
+  @apply inner-centered
 }
 .inner-centered {
   @apply max-w-screen-xl mx-auto
@@ -45,6 +50,37 @@ section .grid {
 @keyframes typing {
   from {
     width: 0ch;
+  }
+}
+.color-effect {
+  animation: color-effect 4s infinite alternate-reverse;
+  @apply text-primary whitespace-nowrap
+}
+@keyframes color-effect {
+  from {
+    color: white;
+  }
+}
+.typing-effect {
+  animation: typing 4s steps(22) infinite alternate-reverse;
+  @apply w-[22ch] overflow-hidden whitespace-nowrap
+}
+@keyframes typing {
+  from {
+    width: 0ch;
+  }
+}
+.width-effect {
+  animation: width-effect 4s infinite alternate-reverse;
+}
+@keyframes width-effect {
+  from {
+    width: 0;
+    border-color: white;
+  }
+  to {
+    width: 6rem;
+    border-color: var(--color-primary);
   }
 }
 .home-banner {
@@ -76,13 +112,16 @@ p {
   left: calc(50% - 1rem);
  }
  .mobile-menu {
-  @apply lg:hidden
+  @apply lg:hidden p-0
  }
  .mobile-menu svg{
   @apply fill-white
  }
+ .active-menu-item {
+  @apply text-primary
+ }
 .navbar {
-  @apply flex justify-between items-center z-10 sticky top-0 mx-auto px-8 py-4
+  @apply flex justify-between items-center z-10 sticky top-0 mx-auto py-4
 }
 .cta {
   @apply bg-primary text-white font-bold py-4 px-4 lg:px-8 rounded-full hover:bg-white hover:text-primary hover:border-primary
@@ -125,5 +164,8 @@ p {
   @apply after:text-white
 }
 .page-title {
-  @apply centered text-white line-after after:w-24
+  @apply centered text-white line-after color-effect
+}
+.page-title:after{
+  @apply width-effect
 }

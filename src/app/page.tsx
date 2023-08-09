@@ -21,7 +21,7 @@ export default function Home() {
             <Col>
               <Slide down>
                 <div className='opacity-0'>
-                  <Title className='heading1 text-white drop-shadow-lg'>Descubra o <span className='text-primary'>Paraíso Escondido</span>: Caraiva na Bahia!</Title>
+                  <Title className='heading1 text-white drop-shadow-lg'>Descubra o <span className='text-primary color-effect'>Paraíso Escondido</span>: Caraiva na Bahia!</Title>
                   <Text className='py-8 text-white paragraph1 drop-shadow-lg'>
                     Explore suas Praias Deslumbrantes e Cultura Encantadora - Uma Viagem Inesquecível! 
                   </Text>

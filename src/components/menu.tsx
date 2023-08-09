@@ -3,10 +3,19 @@ import { MenuIcon, XIcon } from "@heroicons/react/solid"
 import { Icon } from "@tremor/react"
 import Link from "next/link"
 import { useState } from "react"
+import { usePathname } from 'next/navigation';
+
+const navigation = [
+    { name: 'Home', href: '/' },
+    { name: 'Accomodações', href: '/accomodacoes' },
+    { name: 'Passeios', href: '/passeios' },
+    { name: 'Eventos', href: '/eventos' },
+    { name: 'Contato', href: '/contato' }
+  ];
 
 const Menu = () => {
     const [toggle, setToggle] = useState(false)
-    
+    const pathname = usePathname()
     return (
         <div>
             <div onClick={() => setToggle(!toggle)}>
@@ -17,11 +26,9 @@ const Menu = () => {
                 }
             </div>
             <ul className={` ${toggle ? "flex flex-col absolute w-full bg-white left-0 right-0 mt-4 py-4" : "hidden lg:flex"} menu`}>
-                <li><Link href="/">Home</Link></li>
-                <li><Link href="/accomodacoes">Accomodações</Link></li>
-                <li><Link href="/passeios">Passeios</Link></li>
-                <li><Link href="/eventos">Eventos</Link></li>
-                <li><Link href="/contato">Contato</Link></li>
+                {navigation.map(({name, href}, key) => (
+                    <li key={key}><Link href={href} className={pathname === href ? "active-menu-item" : ""}>{name}</Link></li>
+                ))}
             </ul>
         </div>
     )
