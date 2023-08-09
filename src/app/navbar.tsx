@@ -23,7 +23,7 @@ const NavBar = () => {
     <>
         <nav className={`navbar ${sticky ? "bg-dark" : "max-w-screen-xl"}`}>
             <Menu />
-            <Button className="cta" onClick={toggleOpen}>Reserve Já</Button>
+            <Button className="cta animate-bounce hover:animate-none" onClick={toggleOpen}>Reserve Já</Button>
         </nav>
         <Modal open={open} toggleOpen={toggleOpen}>
             <BookingForm />

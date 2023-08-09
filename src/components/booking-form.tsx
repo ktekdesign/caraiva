@@ -20,7 +20,7 @@ const BookingForm = () => (
                 <NumberInput min={0} icon={UserGroupIcon} placeholder="Quantas Crianças?" />
             </Col>
             <Col numColSpanMd={2} className="text-center">
-            <Button size="xl" className="inherit bg-dark text-white">Ver disponibilidade</Button>
+            <Button className="cta-reverse">Ver disponibilidade</Button>
             </Col>
         </Grid>
     </form>

@@ -5,6 +5,7 @@ import Image from "next/image"
 import { Col, Grid, Icon, Text, Title } from "@tremor/react"
 import { PlayIcon } from "@heroicons/react/solid"
 import Zoom from 'react-reveal/Zoom'
+import Link from "next/link"
 
 const Video = () => {
     const [toggler, setToggler] = useState(false);
@@ -26,6 +27,9 @@ const Video = () => {
                 <Col>
                 <Title className="heading2">Viva o melhor da Bahia</Title>
                 <Text>Bem-vindo a Caraiva: Onde a Beleza da Bahia Encontra a Magia da Natureza. Descubra as Maravilhas Desse Paraíso Encantador! 🌴🌊 #Caraiva #Bahia #Paraíso #Natureza #ViagemDosSonhos</Text>
+                <div className="text-center mt-8">
+                    <Link href="/como-chegar" className="cta-reverse">Como chegar</Link>
+                </div>
                 </Col>
             </Grid>
             </Zoom>

@@ -1,16 +1,29 @@
 import Banner from '@/components/banner'
-import { Col, Grid, Title } from '@tremor/react'
+import Gallery from '@/components/gallery'
+import PageTitle from '@/components/page-title'
+import { Col, Grid, Text } from '@tremor/react'
 
 export default function Accomodacoes() {
   return (
     <>
       <Banner className="inner-banner" url='/images/banner.webp' />
       <main>
-        <Grid numItems={1} className="page-banner place-items-center">
+        <Grid numItems={1} className="page-banner">
           <Col>
-            <Title className='heading1 text-white drop-shadow-lg max-w-md text-center'>Accomodações</Title>
+            <PageTitle>Accomodações</PageTitle>
           </Col>
         </Grid>
+        <section>
+          <Grid numItemsLg={3} className="gap-8 pb-8 inner-centered">
+              <Col numColSpanLg={2}>
+                  <h2 className="heading2 typing-effect w-full">Pousada <span className='text-primary'>Recanto da Paz</span></h2>
+              </Col>
+              <Col>
+                  <Text>Viva o Paraíso de Caraiva: Encante-se com a Experiência Única de Hospedagem em Chalés Exclusivos!</Text>
+              </Col>
+            </Grid>
+          <Gallery />
+        </section>
       </main>
     </>
   )
