@@ -1,10 +1,8 @@
 import Banner from '@/components/banner'
-import CardSwiper from '@/components/card-swiper'
 import PageTitle from '@/components/page-title'
 import ProductGrid from '@/components/product-grid'
 import { photos } from '@/utils/photos'
-import { Col, Grid, Title, Text } from '@tremor/react'
-import Link from 'next/link'
+import { Col, Grid } from '@tremor/react'
 
 export default function Passeios() {
   return (
