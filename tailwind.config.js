@@ -12,7 +12,9 @@ module.exports = {
     extend: {
       colors: {
         primary: 'var(--color-primary)',
-        dark: '#343434',
+        secondary: 'var(--color-secondary)',
+        tertiary: 'var(--color-tertiary)',
+        dark: 'var(--color-secondary)',
         // light mode
       tremor: {
         

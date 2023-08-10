@@ -1,5 +1,6 @@
 "use client"
 import BookingForm from "@/components/booking-form"
+import Cart from "@/components/cart"
 import Menu from "@/components/menu"
 import Modal from "@/components/modal"
 import { ShoppingCartIcon, UserIcon } from "@heroicons/react/solid"
@@ -10,6 +11,7 @@ import { useEffect, useState } from "react"
 const NavBar = () => {
     const [open, setOpen] = useState(false)
     const toggleOpen = () => setOpen(!open)
+    const [float, setFloat] = useState(false)
     const [sticky, setSticky] = useState(false)
 
   useEffect(() => {
@@ -26,17 +28,25 @@ const NavBar = () => {
         <nav className={`navbar ${sticky ? "bg-dark px-8" : "max-w-screen-xl px-8 xl:px-0"}`}>
             <Menu />
             <div className="flex gap-4 items-center">
-                <Link href="carrinho">
-                    <ShoppingCartIcon className="h-8 fill-white rounded-full border border-white p-1" />
-                </Link>
-                <Link href="minha-conta">
+                <ShoppingCartIcon onClick={() => {
+                    setFloat(true)
+                    toggleOpen()
+                }} className="h-8 fill-white rounded-full border border-white p-1 cursor-pointer" />
+                <Link href="/minha-conta">
                     <UserIcon className="h-8 fill-white rounded-full border border-white p-1" />
                 </Link>
-                <Button className="cta animate-bounce hover:animate-none" onClick={toggleOpen}>Reserve Já</Button>
+                <Button className="cta animate-bounce hover:animate-none" onClick={() => {
+                    setFloat(false)
+                    toggleOpen()
+                }}>Reserve Já!</Button>
             </div>
         </nav>
-        <Modal open={open} toggleOpen={toggleOpen}>
-            <BookingForm />
+        <Modal float={float} open={open} toggleOpen={toggleOpen}>
+            {float ?
+                <Cart />
+                :
+                <BookingForm />
+            }
         </Modal>
     </>
 )

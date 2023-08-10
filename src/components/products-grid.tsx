@@ -5,7 +5,7 @@ import { memo } from "react";
 import Price from "./price";
 
 const ProductGrid = ({products}) => (
-    <Flex className='gap-16 flex-col'>
+    <Flex className='gap-12 flex-col'>
       {products.map(product => (
      
     <Card key={product} className="gap-8 md:gap-0 p-0 ring-primary hover:shadow flex flex-wrap md:flex-nowrap even:md:flex-row-reverse cursor-pointer">

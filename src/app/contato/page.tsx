@@ -1,4 +1,5 @@
 import Banner from '@/components/banner'
+import Localization from '@/components/localization'
 import PageTitle from '@/components/page-title'
 import { Col, Grid } from '@tremor/react'
 
@@ -12,6 +13,9 @@ export default function Contato() {
             <PageTitle>Contato</PageTitle>
           </Col>
         </Grid>
+        <section className='centered'>
+          <Localization />
+        </section>
       </main>
     </>
   )

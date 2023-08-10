@@ -15,5 +15,10 @@ export const photos = [
     "https://source.unsplash.com/pF1ug8ysTtY/600x400",
     "https://source.unsplash.com/A-fubu9QJxE/800x533",
     "https://source.unsplash.com/5P91SF0zNsI/740x494",
+    "https://source.unsplash.com/2ShvY8Lf6l0/800x599",
+    "https://source.unsplash.com/Dm-qxdynoEc/800x799",
+    "https://source.unsplash.com/qDkso9nvCg0/600x799",
+    "https://source.unsplash.com/iecJiKe_RNg/600x799",
+    
   ];
   
