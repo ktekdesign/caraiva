@@ -4,12 +4,12 @@ import { Bold } from "@tremor/react"
 import Image from "next/image"
 import Link from "next/link"
 import { memo } from "react"
-import Slide from 'react-reveal/Slide'
+import {Slide} from 'react-awesome-reveal'
 
 const Rating = ({rating}) => (
-    <Slide up>
     <div className="rating">
-        <div className="grid gap-4 grid-cols-2 place-content-center w-full">
+    <Slide className="column" direction="up">
+        <div className="grid gap-4 grid-cols-2 place-content-center">
             <div className="flex justify-center">
                 <Image src={rating.picture} alt='' width={100} height={100} className="w-[100px] h-[100px]" />
             </div>
@@ -28,15 +28,14 @@ const Rating = ({rating}) => (
                     </Link>
                 }
             </div>
-            
         </div>
-        <div className="md:col-span-2">
+        <div>
             <blockquote>
                 {rating.content}
             </blockquote>
         </div>
-    </div>
     </Slide>
+    </div>
 )
 
 export default memo(Rating)

@@ -8,7 +8,7 @@ import SectionTitle from '@/components/section-title'
 import SellMedia from '@/components/sell-media'
 import { photos } from '@/utils/photos'
 import { Col, Grid, Text } from '@tremor/react'
-import Slide from 'react-reveal/Slide'
+import {Slide} from 'react-awesome-reveal'
 
 const ratings = [
   {
@@ -58,7 +58,7 @@ export default function Accomodacoes() {
         <section className='dual-background'>
           <div className='grid gap-16 grid-cols-1 md:grid-cols-2 centered'>
             <div>
-              <Slide left>
+              <Slide direction='left'>
                 <h2 className='heading2 pb-2'>Descubra o Paraíso em Caraíva: Bem-Vindo à Nossa Pousada</h2>
 
                 <p>Bem-vindo a um refúgio escondido nas margens de Caraíva, um lugar onde o encanto rústico se encontra com a serenidade da natureza. Apresentamos a você a nossa pousada, onde cada momento é uma aventura e cada suspiro é preenchido com a tranquilidade da vida à beira-mar.</p>
@@ -81,7 +81,7 @@ export default function Accomodacoes() {
               </Slide>
             </div>
             <div>
-              <Slide right>
+              <Slide direction='right'>
                 <BookingForm />
               </Slide>
             </div>

@@ -29,6 +29,7 @@
 body {
   @apply centered-2xl
 }
+
 .centered {
   @apply max-w-screen-xl mx-auto
 }
@@ -146,20 +147,21 @@ blockquote {
   @apply text-lg lg:text-2xl
 }
 .booking-form {
-  @apply px-8 pt-8 relative bg-transparent
+  @apply px-4 pt-4 relative bg-transparent
 }
 .modal .booking-form {
   @apply w-full max-w-screen-sm
 }
 .float-modal {
-  @apply w-10/12 h-full fixed right-0 max-w-[400px] left-auto
+  @apply w-10/12 h-full absolute right-0 max-w-[400px] left-auto
 }
 .close-btn {
   @apply cursor-pointer absolute top-2 left-auto right-2
 }
-.booking-form .close-btn svg {
-  @apply fill-white
+.booking-form .close-btn {
+  @apply -top-2
 }
+
 .footer {
   @apply py-8 mx-auto max-w-screen-xl layout-space-x
 }
@@ -183,11 +185,14 @@ blockquote {
   @apply width-effect
 }
 .modal {
-  @apply fixed w-full h-full top-0 left-0 z-20 items-center justify-center
+  @apply absolute w-full h-full top-0 left-0 z-20 items-center justify-center
 }
 .modal-blur {
-  @apply fixed w-full h-full top-0 left-0 backdrop-blur cursor-pointer
+  @apply absolute w-full h-full top-0 left-0 backdrop-blur cursor-pointer
 }
 .rating {
   @apply grid gap-12 md:gap-8 grid-cols-1 md:grid-cols-3 place-items-center py-16 border-b-2 last-of-type:border-b-transparent
+}
+.rating .column {
+  @apply last-of-type:md:col-span-2
 }

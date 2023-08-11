@@ -19,7 +19,7 @@ const Menu = () => {
     const pathname = usePathname()
     return (
         <div>
-            <div onClick={toggleMenu}>
+            <div className="lg:hidden" onClick={toggleMenu}>
                 {toggle ?
                     <Icon size="lg" icon={XIcon} className="mobile-menu" />
                 :

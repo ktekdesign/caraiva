@@ -4,7 +4,7 @@ import FsLightbox from "fslightbox-react"
 import Image from "next/image"
 import { Col, Grid, Icon, Text, Title } from "@tremor/react"
 import { PlayIcon } from "@heroicons/react/solid"
-import Zoom from 'react-reveal/Zoom'
+import {Zoom} from 'react-awesome-reveal'
 import Link from "next/link"
 
 const Video = () => {

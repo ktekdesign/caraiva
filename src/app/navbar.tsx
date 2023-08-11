@@ -24,7 +24,7 @@ const NavBar = () => {
   })
     return (
     <>
-        <nav className={`navbar ${sticky ? "bg-dark px-8" : "max-w-screen-xl px-8 xl:px-0"}`}>
+        <nav className={`navbar ${sticky ? "bg-dark px-8" : "centered-2xl px-8"}`}>
             <Menu />
             <div className="flex gap-4 items-center">
                 <ShoppingCartIcon onClick={() => {

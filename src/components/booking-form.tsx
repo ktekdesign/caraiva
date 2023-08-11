@@ -10,7 +10,7 @@ const BookingForm = () => {
     const checkout = useRef(null)
     const [loading, setLoading] = useState(false)
     return (
-        <Card className="ring-white bg-white dark:bg-white">
+        <Card className="ring-white bg-white p-4 pb-8">
             {loading && 
                 <div className="flex flex-col gap-4">
                     <Title className="heading2">Aguarde</Title>
@@ -22,9 +22,9 @@ const BookingForm = () => {
                 e.preventDefault()
                 setLoading(true)
                 }} className={`booking-form ${loading ? "hidden" : ""}`}>
-                <Title className="heading2">Reserve Já!</Title>
+                <h2 className="heading2">Reserve Já!</h2>
                 <Text>Preencha o formulario para ver a disponibilidade</Text>
-                <Grid numItems={1} numItemsMd={2} className="gap-8 pt-8">
+                <Grid numItems={1} numItemsLg={2} className="gap-4 pt-4">
                     <Col className="relative">
                         <DatePicker ref={checkin} minDate={new Date()} placeholder="Checkin" />
                         <Icon icon={CalendarIcon} onClick={() => {
@@ -43,7 +43,7 @@ const BookingForm = () => {
                     <Col>
                         <NumberInput min={0} icon={UserGroupIcon} placeholder="Quantas Crianças?" />
                     </Col>
-                    <Col numColSpanMd={2} className="text-center">
+                    <Col numColSpanLg={2} className="text-center">
                         <div className="flex gap-4 flex-col justify-center items-center">
                             <Button className="cta-reverse">Ver disponibilidade</Button>
                             <p>OU</p>

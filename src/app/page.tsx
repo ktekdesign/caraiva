@@ -9,7 +9,7 @@ import Video from '@/components/video'
 import { photos } from '@/utils/photos'
 import { Col, Grid, Text } from '@tremor/react'
 import Link from 'next/link'
-import Slide from 'react-reveal/Slide'
+import {Slide} from 'react-awesome-reveal'
 
 export default function Home() {
   return (
@@ -19,20 +19,16 @@ export default function Home() {
         <section className='centered py-8'>
           <Grid numItems={1} numItemsLg={2} className="home-banner">
             <Col>
-              <Slide down>
-                <div className='opacity-0'>
-                  <h1 className='heading1 text-white drop-shadow-lg'>Descubra o <span className='text-primary color-effect'>Paraíso Escondido</span>: Caraiva na Bahia!</h1>
-                  <Text className='py-8 text-white paragraph1 drop-shadow-lg'>
-                    Explore suas Praias Deslumbrantes e Cultura Encantadora - Uma Viagem Inesquecível! 
-                  </Text>
-                </div>
+              <Slide direction="down">
+                <h1 className='heading1 text-white drop-shadow-lg'>Descubra o <span className='text-primary color-effect'>Paraíso Escondido</span>: Caraiva na Bahia!</h1>
+                <Text className='py-8 text-white paragraph1 drop-shadow-lg text-left'>
+                  Explore suas Praias Deslumbrantes e Cultura Encantadora - Uma Viagem Inesquecível! 
+                </Text>
               </Slide>
             </Col>
             <Col>
-              <Slide up>
-                <div className='opacity-0'>
-                  <BookingForm />
-                </div>
+              <Slide direction="up">
+                <BookingForm />
               </Slide>
             </Col>
           </Grid>
