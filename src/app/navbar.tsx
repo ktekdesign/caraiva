@@ -32,9 +32,7 @@ const NavBar = () => {
                     setFloat(true)
                     toggleOpen()
                 }} className="h-8 fill-white rounded-full border border-white p-1 cursor-pointer" />
-                <Link href="/minha-conta">
-                    <UserIcon className="h-8 fill-white rounded-full border border-white p-1" />
-                </Link>
+                <UserIcon className="h-8 fill-white rounded-full border border-white p-1 cursor-pointer" />
                 <Button className="cta animate-bounce hover:animate-none" onClick={() => {
                     setFloat(false)
                     toggleOpen()

@@ -66,26 +66,18 @@ section .grid {
 }
 @keyframes color-effect {
   from {
-    color: #00FFFF;
+    color: var(--color-tertiary);
     filter: drop-shadow(0 1px 1px rgb(0 0 0 / 0.05));
   }
 }
-.typing-effect {
-  animation: typing 4s steps(22) infinite alternate-reverse;
-  @apply w-[22ch] overflow-hidden whitespace-nowrap
-}
-@keyframes typing {
-  from {
-    width: 0ch;
-  }
-}
+
 .width-effect {
   animation: width-effect 4s infinite alternate-reverse;
 }
 @keyframes width-effect {
   from {
     width: 0;
-    border-color: #00FFFF;
+    border-color: var(--color-tertiary);
   }
   to {
     width: 6rem;
@@ -160,7 +152,7 @@ p {
   @apply w-full h-full fixed right-0 max-w-[400px] left-auto
 }
 .footer {
-  @apply p-8 mx-auto max-w-screen-xl
+  @apply py-8 mx-auto max-w-screen-xl
 }
 
 .copyright {

@@ -2,7 +2,7 @@
 import { MenuIcon, XIcon } from "@heroicons/react/solid"
 import { Icon } from "@tremor/react"
 import Link from "next/link"
-import { useState } from "react"
+import { useCallback, useState } from "react"
 import { usePathname } from 'next/navigation';
 
 const navigation = [
@@ -15,10 +15,11 @@ const navigation = [
 
 const Menu = () => {
     const [toggle, setToggle] = useState(false)
+    const toggleMenu = useCallback(() => setToggle(!toggle), [toggle])
     const pathname = usePathname()
     return (
         <div>
-            <div onClick={() => setToggle(!toggle)}>
+            <div onClick={toggleMenu}>
                 {toggle ?
                     <Icon size="lg" icon={XIcon} className="mobile-menu" />
                 :
@@ -27,7 +28,7 @@ const Menu = () => {
             </div>
             <ul className={` ${toggle ? "flex flex-col absolute w-full bg-white left-0 right-0 mt-4 py-4" : "hidden lg:flex"} menu`}>
                 {navigation.map(({name, href}, key) => (
-                    <li key={key}><Link href={href} className={pathname === href ? "active-menu-item" : ""}>{name}</Link></li>
+                    <li onClick={() => setToggle(false)} key={key}><Link href={href} className={pathname === href ? "active-menu-item" : ""}>{name}</Link></li>
                 ))}
             </ul>
         </div>
