@@ -5,7 +5,6 @@ import Menu from "@/components/menu"
 import Modal from "@/components/modal"
 import { ShoppingCartIcon, UserIcon } from "@heroicons/react/solid"
 import { Button } from "@tremor/react"
-import Link from "next/link"
 import { useEffect, useState } from "react"
 
 const NavBar = () => {
