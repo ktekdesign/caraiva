@@ -4,6 +4,8 @@ import BookingForm from '@/components/booking-form'
 import PageTitle from '@/components/page-title'
 import PhotoGrid from '@/components/photo-grid'
 import Rating from '@/components/rating'
+import SectionTitle from '@/components/section-title'
+import SellMedia from '@/components/sell-media'
 import { photos } from '@/utils/photos'
 import { Col, Grid, Text } from '@tremor/react'
 import Slide from 'react-reveal/Slide'
@@ -86,7 +88,10 @@ export default function Accomodacoes() {
           </div>
         </section>
         <section className='centered'>
-          <h2 className='heading2'>Avaliações</h2>
+          <SectionTitle>
+            <h2 className='heading2'>Avaliações</h2>
+            <SellMedia />
+          </SectionTitle>
           {ratings?.map((rating, key) => (
             <Rating key={key} rating={rating} />
           ))}

@@ -146,10 +146,19 @@ blockquote {
   @apply text-lg lg:text-2xl
 }
 .booking-form {
-  @apply p-8 bg-white rounded-3xl relative
+  @apply px-8 pt-8 relative bg-transparent
+}
+.modal .booking-form {
+  @apply w-full max-w-screen-sm
 }
 .float-modal {
   @apply w-10/12 h-full fixed right-0 max-w-[400px] left-auto
+}
+.close-btn {
+  @apply cursor-pointer absolute top-2 left-auto right-2
+}
+.booking-form .close-btn svg {
+  @apply fill-white
 }
 .footer {
   @apply py-8 mx-auto max-w-screen-xl layout-space-x
