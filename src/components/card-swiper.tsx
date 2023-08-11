@@ -9,7 +9,7 @@ import { memo } from 'react'
 
 const CardSwiper = ({slides, slidesPerView = 3, cta = false}) => (
         <Swiper
-            spaceBetween={30}
+            spaceBetween={20}
             breakpoints={{
                 0: {
                   slidesPerView: Math.max(slidesPerView - 2, 1),
@@ -31,7 +31,7 @@ const CardSwiper = ({slides, slidesPerView = 3, cta = false}) => (
                         <div className='h-[300px] w-[300px]'>
                         <Image className='object-cover hover:brightness-50 rounded-md' src={slide} fill alt='' />
                         </div>
-                        {cta && <Button className="cta relative block mx-auto">Comprar ingresso</Button>}
+                        {cta && <Button className="cta relative block mx-auto">Comprar</Button>}
                     </Card>
                 </SwiperSlide>
             ))}

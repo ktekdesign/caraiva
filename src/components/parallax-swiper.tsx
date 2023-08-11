@@ -18,7 +18,7 @@ const ParallaxSwiper = ({slides}) => (
             <SwiperSlide key={key}>
                 <div className='parallax'>
                     <Image className='object-cover hover:brightness-50' src={slide} fill alt='' />
-                    <Button className="cta relative">Comprar ingresso</Button>
+                    <Button className="cta relative">Comprar</Button>
                 </div>
             </SwiperSlide>
         ))}

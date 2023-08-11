@@ -1,7 +1,6 @@
 "use client"
 import { Title, Text, DatePicker, Grid, Col, NumberInput, Button, Icon, Card } from "@tremor/react"
 import { CalendarIcon, UserGroupIcon } from "@heroicons/react/solid"
-import Link from "next/link"
 import Image from "next/image"
 import { useRef, useState } from "react"
 import SellMedia from "./sell-media"

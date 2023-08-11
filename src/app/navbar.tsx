@@ -30,8 +30,8 @@ const NavBar = () => {
                 <ShoppingCartIcon onClick={() => {
                     setFloat(true)
                     toggleOpen()
-                }} className="h-8 fill-white rounded-full border border-white p-1 cursor-pointer" />
-                <UserIcon className="h-8 fill-white rounded-full border border-white p-1 cursor-pointer" />
+                }} className="h-8 fill-white rounded-full border border-white p-1 cursor-pointer hover:scale-125" />
+                <UserIcon className="h-8 fill-white rounded-full border border-white p-1 cursor-pointer hover:scale-125" />
                 <Button className="cta animate-bounce hover:animate-none" onClick={() => {
                     setFloat(false)
                     toggleOpen()

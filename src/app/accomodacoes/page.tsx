@@ -90,7 +90,7 @@ export default function Accomodacoes() {
         <section className='centered'>
           <SectionTitle>
             <h2 className='heading2'>Avaliações</h2>
-            <SellMedia />
+            <SellMedia social={false} />
           </SectionTitle>
           {ratings?.map((rating, key) => (
             <Rating key={key} rating={rating} />
