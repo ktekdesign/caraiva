@@ -29,13 +29,10 @@
 body {
   @apply centered-2xl
 }
-
 .centered {
-  @apply inner-centered
-}
-.inner-centered {
   @apply max-w-screen-xl mx-auto
 }
+
 .centered-2xl {
   @apply max-w-screen-2xl mx-auto
 }
@@ -89,7 +86,10 @@ section .grid {
   @apply gap-8
 }
 p {
-  @apply py-2
+  @apply py-2 text-sm text-justify
+}
+blockquote {
+  @apply relative before:content-['\201C'] before:text-8xl before:absolute before:left-0 before:-top-10 before:text-secondary after:content-['\201C'] after:text-8xl after:absolute after:right-0 after:-bottom-10 after:text-secondary after:rotate-180 px-12 text-justify
 }
 .line-after {
   @apply relative flex flex-col-reverse after:-mb-4 after:content-[''] after:absolute after:border-2 after:border-white
@@ -134,29 +134,29 @@ p {
   @apply bg-primary text-white font-bold py-4 px-4 lg:px-8 rounded-full hover:bg-dark hover:text-white hover:border-dark
 }
 .heading1 {
-  @apply font-extrabold text-3xl lg:text-5xl uppercase
+  @apply font-extrabold text-3xl lg:text-5xl uppercase text-left
 }
 .heading2 {
-  @apply font-bold text-xl lg:text-3xl uppercase
+  @apply font-bold text-xl lg:text-3xl uppercase text-left
 }
 .heading3 {
-  @apply font-bold text-lg lg:text-xl 
+  @apply font-bold text-lg lg:text-xl text-left
 }
 .paragraph1 {
   @apply text-lg lg:text-2xl
 }
 .booking-form {
-  @apply p-8 bg-white rounded-3xl
+  @apply p-8 bg-white rounded-3xl relative
 }
 .float-modal {
-  @apply w-full h-full fixed right-0 max-w-[400px] left-auto
+  @apply w-10/12 h-full fixed right-0 max-w-[400px] left-auto
 }
 .footer {
-  @apply py-8 mx-auto max-w-screen-xl
+  @apply py-8 mx-auto max-w-screen-xl layout-space-x
 }
 
 .copyright {
-  @apply flex justify-between items-center py-4 px-8 max-w-screen-xl mx-auto text-xs gap-8
+  @apply flex justify-between items-center py-4 layout-space-x max-w-screen-xl mx-auto text-xs gap-8
 }
 .play-btn svg {
   @apply w-48 h-48 fill-white hover:fill-tertiary
@@ -178,4 +178,7 @@ p {
 }
 .modal-blur {
   @apply fixed w-full h-full top-0 left-0 backdrop-blur cursor-pointer
+}
+.rating {
+  @apply grid gap-12 md:gap-8 grid-cols-1 md:grid-cols-3 place-items-center py-16 border-b-2 last-of-type:border-b-transparent
 }

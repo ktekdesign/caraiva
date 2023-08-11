@@ -7,7 +7,7 @@ import PhotoGrid from '@/components/photo-grid'
 import SectionTitle from '@/components/section-title'
 import Video from '@/components/video'
 import { photos } from '@/utils/photos'
-import { Col, Grid, Title, Text } from '@tremor/react'
+import { Col, Grid, Text } from '@tremor/react'
 import Link from 'next/link'
 import Slide from 'react-reveal/Slide'
 
@@ -21,7 +21,7 @@ export default function Home() {
             <Col>
               <Slide down>
                 <div className='opacity-0'>
-                  <Title className='heading1 text-white drop-shadow-lg'>Descubra o <span className='text-primary color-effect'>Paraíso Escondido</span>: Caraiva na Bahia!</Title>
+                  <h1 className='heading1 text-white drop-shadow-lg'>Descubra o <span className='text-primary color-effect'>Paraíso Escondido</span>: Caraiva na Bahia!</h1>
                   <Text className='py-8 text-white paragraph1 drop-shadow-lg'>
                     Explore suas Praias Deslumbrantes e Cultura Encantadora - Uma Viagem Inesquecível! 
                   </Text>

@@ -1,3 +1,4 @@
+"use client"
 import { Title, Text, DatePicker, Grid, Col, NumberInput, Button, Icon } from "@tremor/react"
 import { CalendarIcon, UserGroupIcon } from "@heroicons/react/solid"
 import Link from "next/link"
@@ -9,7 +10,7 @@ const BookingForm = () => {
     const checkout = useRef(null)
     return (
     <form onSubmit={(e) => e.preventDefault()} className="booking-form">
-        <Title className="heading2">Reserve Já</Title>
+        <Title className="heading2">Reserve Já!</Title>
         <Text>Preencha o formulario para ver a disponibilidade</Text>
         <Grid numItems={1} numItemsMd={2} className="gap-8 pt-8">
             <Col className="relative">
@@ -34,9 +35,18 @@ const BookingForm = () => {
                 <div className="flex gap-4 flex-col justify-center items-center">
                     <Button className="cta-reverse">Ver disponibilidade</Button>
                     <p>OU</p>
-                    <Link href="https://www.airbnb.com.br/rooms/854228588053595526" target="_blank">
-                        <Image width={150} height={0} alt="" src="/images/airbnb.svg" />
-                    </Link>
+                    <div className="flex justify-center items-center flex-col-reverse sm:flex-row gap-4">
+                        <Link href="https://www.airbnb.com.br/rooms/854228588053595526" target="_blank">
+                            <Image width={100} height={0} alt="" src="/images/airbnb.svg" />
+                        </Link>
+                        <Image width={150} height={0} alt="" src="/images/booking.svg" />
+                        <div className="flex gap-4 items-center">
+                            <Link href="https://bit.ly/inforecantodapaz" target="_blank">
+                                <Image width={40} height={0} alt="" src="/images/whatsapp.svg" />
+                            </Link>
+                            <Link href="https://www.instagram.com/recantodapaz.caraiva/" target="_blank"><Image src="/images/instagram.svg" alt="Instagram" width={32} height={32} className="rounded-full" /></Link>
+                        </div>
+                    </div>
                 </div>
             </Col>
         </Grid>

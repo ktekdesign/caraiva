@@ -8,7 +8,7 @@ const Modal = ({children, open, toggleOpen, float = false} : {children: ReactNod
         <div className="modal-blur" onClick={toggleOpen}></div>
         <Slide right>
         <dialog className={`z-10 ${float ? "float-modal" : "booking-form"}`} open={open}>
-            <Icon icon={XIcon} onClick={toggleOpen} className="cursor-pointer float-right"></Icon>
+            <Icon icon={XIcon} onClick={toggleOpen} className="cursor-pointer absolute top-2 left-auto right-2"></Icon>
             {children}
         </dialog>
         </Slide>
