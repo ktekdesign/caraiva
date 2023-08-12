@@ -19,15 +19,17 @@ const NavBar = () => {
     })
   })
     return (
-        <nav className={`navbar ${sticky ? "bg-dark" : "centered 2xl:centered-2xl"}`}>
-            <Menu />
-            <div className="flex gap-4 items-center">
-                <ShoppingCartIcon onClick={() => {
-                    setFloat(true)
-                    toggleOpen()
-                }} className="navbar-icon" />
-                <UserIcon className="navbar-icon" />
-                <ReservationButton />
+        <nav className={`z-30 sticky top-0 layout-space-x ${sticky ? "bg-dark" : ""}`}>
+            <div className="navbar">
+                <Menu />
+                <div className="flex gap-4 items-center">
+                    <ShoppingCartIcon onClick={() => {
+                        setFloat(true)
+                        toggleOpen()
+                    }} className="navbar-icon" />
+                    <UserIcon className="navbar-icon" />
+                    <ReservationButton />
+                </div>
             </div>
         </nav>
 )

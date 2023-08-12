@@ -28,7 +28,7 @@ const CardSwiper = ({slides, slidesPerView = 3, cta = false}) => (
             {slides?.map((slide, key) => (
                 <SwiperSlide key={key}>
                     <Card className='ring-0'>
-                        <div className='h-[300px] w-[300px]'>
+                        <div className='h-[350px] w-[350px]'>
                         <Image className='object-cover hover:brightness-50 rounded-md' src={slide} fill alt='' />
                         </div>
                         {cta && <Button className="cta relative block mx-auto">Comprar</Button>}

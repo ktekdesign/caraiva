@@ -11,7 +11,7 @@ const Video = () => {
     const {toggler, setToggler, setLightBoxItems} = useContext(LightBoxContext)
 
 	return (
-        <div className="centered relative">
+        <div className="relative">
             <Zoom>
                 <Grid className="gap-8 mb-24 place-items-center" numItems={1} numItemsLg={3}>
                     <Col onClick={() => {

@@ -10,9 +10,9 @@ const Rating = ({rating}) => (
     <div className="rating">
     <Slide className="column" direction="up">
         <div className="grid gap-4 grid-cols-2 place-content-center">
-            <div className="flex justify-center">
+            <picture>
                 <Image src={rating.picture} alt='' width={100} height={100} className="w-[100px] h-[100px]" />
-            </div>
+            </picture>
             <div className="flex flex-col justify-center">
                 <Bold>{rating.name}</Bold>
                 <p className="flex gap-2">

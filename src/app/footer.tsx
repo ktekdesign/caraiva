@@ -6,7 +6,7 @@ import { Title, Text } from "@tremor/react";
 
 const Footer = () => (
     <footer>
-        <div className="border-y-2">
+        <div className="border-y-2 layout-space-x">
             <div className="footer">
                 <FooterContact />
                 <div>
@@ -17,7 +17,9 @@ const Footer = () => (
                 <Newsletter />
             </div>
         </div>
-        <Copyright />
+        <div className="layout-space-x">
+            <Copyright />
+        </div>
     </footer>
 )
 

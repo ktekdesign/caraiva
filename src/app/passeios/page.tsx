@@ -11,11 +11,13 @@ export default function Passeios() {
       <main>
         <Grid numItems={1} className="page-banner">
           <Col>
-            <PageTitle>Passeios</PageTitle>
+            <PageTitle title="Passeios" />
           </Col>
         </Grid>
-        <section className='centered'>
-          <ProductsGrid products={photos} />
+        <section>
+          <div className='inner-centered'>
+            <ProductsGrid products={photos} />
+          </div>
         </section>
       </main>
     </>

@@ -35,14 +35,16 @@ export default function Home() {
           </Grid>
         </section>
         <section className='dual-background'>
-          <Video />
+          <div className='inner-centered'>
+            <Video />
+          </div>
         </section>
-        <section className='centered'>
+        <section>
           <SectionTitle>
             <h2 className="heading2 w-full">Pousada <span className='text-primary color-effect'>Recanto da Paz</span></h2>
             <Text>Viva o Paraíso de Caraiva: Encante-se com a Experiência Única de Hospedagem em Chalés Exclusivos!</Text>
           </SectionTitle>
-          <div className='relative'>
+          <div className='relative inner-centered'>
             <FloatReservation />
             <PhotoGrid photos={photos} />
           </div>
@@ -54,12 +56,14 @@ export default function Home() {
           </SectionTitle>
           <ParallaxSwiper slides={photos} />
         </section>
-        <section className='centered'>
+        <section>
           <SectionTitle>
             <h2 className="heading2">Passeios</h2>
             <Link href="/passeios" className='cta-reverse'>Ver Mais</Link>
           </SectionTitle>
-          <CardSwiper slides={photos} cta />
+          <div className='inner-centered'>
+            <CardSwiper slides={photos} cta />
+          </div>
         </section>
       </main>
     </>

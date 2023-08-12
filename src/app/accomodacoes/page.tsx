@@ -41,22 +41,20 @@ export default function Accomodacoes() {
       <main>
         <Grid numItems={1} className="page-banner">
           <Col>
-            <PageTitle>Accomodações</PageTitle>
+            <PageTitle title="Accomodações" />
           </Col>
         </Grid>
-        <section className='centered'>
-          <Grid numItemsLg={3} className="gap-8 pb-8 centered">
-              <Col numColSpanLg={2}>
-                  <h2 className="heading2 w-full">Pousada <span className='text-primary color-effect'>Recanto da Paz</span></h2>
-              </Col>
-              <Col>
-                  <Text>Viva o Paraíso de Caraiva: Encante-se com a Experiência Única de Hospedagem em Chalés Exclusivos!</Text>
-              </Col>
-            </Grid>
-          <PhotoGrid photos={photos} />
+        <section>
+          <SectionTitle>
+            <h2 className="heading2 w-full">Pousada <span className='text-primary color-effect'>Recanto da Paz</span></h2>
+            <Text>Viva o Paraíso de Caraiva: Encante-se com a Experiência Única de Hospedagem em Chalés Exclusivos!</Text>
+          </SectionTitle>
+          <div className='inner-centered'>
+            <PhotoGrid photos={photos} />
+          </div>
         </section>
         <section className='dual-background'>
-          <div className='grid gap-16 grid-cols-1 md:grid-cols-2 centered'>
+          <div className='grid gap-16 grid-cols-1 md:grid-cols-2 inner-centered'>
             <div>
               <Slide direction='left'>
                 <h2 className='heading2 pb-2'>Descubra o Paraíso em Caraíva: Bem-Vindo à Nossa Pousada</h2>
@@ -87,14 +85,16 @@ export default function Accomodacoes() {
             </div>
           </div>
         </section>
-        <section className='centered'>
+        <section>
           <SectionTitle>
             <h2 className='heading2'>Avaliações</h2>
             <SellMedia social={false} />
           </SectionTitle>
-          {ratings?.map((rating, key) => (
-            <Rating key={key} rating={rating} />
-          ))}
+          <div className='inner-centered'>
+            {ratings?.map((rating, key) => (
+              <Rating key={key} rating={rating} />
+            ))}
+          </div>
         </section>
       </main>
     </>

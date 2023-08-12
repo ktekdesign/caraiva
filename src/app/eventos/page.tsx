@@ -11,13 +11,13 @@ export default function Eventos() {
       <main>
         <Grid numItems={1} className="page-banner">
           <Col>
-            <PageTitle>Eventos</PageTitle>
+            <PageTitle title="Eventos" />
           </Col>
         </Grid>
-        <section className='centered'>
-          
-          <ProductsGrid products={photos} />
-          
+        <section>
+          <div className='inner-centered'>
+            <ProductsGrid products={photos} />
+          </div>
         </section>
       </main>
     </>

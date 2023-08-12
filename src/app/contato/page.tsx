@@ -10,11 +10,13 @@ export default function Contato() {
       <main>
         <Grid numItems={1} className="page-banner">
           <Col>
-            <PageTitle>Contato</PageTitle>
+            <PageTitle title="Contato" />
           </Col>
         </Grid>
-        <section className='centered'>
-          <Localization />
+        <section>
+          <div className='layout-full'>
+            <Localization />
+          </div>
         </section>
       </main>
     </>
