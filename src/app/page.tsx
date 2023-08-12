@@ -2,6 +2,7 @@
 import Banner from '@/components/banner'
 import BookingForm from '@/components/booking-form'
 import CardSwiper from '@/components/card-swiper'
+import FloatReservation from '@/components/float-reservation'
 import ParallaxSwiper from '@/components/parallax-swiper'
 import PhotoGrid from '@/components/photo-grid'
 import SectionTitle from '@/components/section-title'
@@ -16,7 +17,7 @@ export default function Home() {
     <>
       <Banner url='/images/banner.webp' />
       <main>
-        <section className='centered py-8'>
+        <section className='centered py-0'>
           <Grid numItems={1} numItemsLg={2} className="home-banner">
             <Col>
               <Slide direction="down">
@@ -41,7 +42,10 @@ export default function Home() {
             <h2 className="heading2 w-full">Pousada <span className='text-primary color-effect'>Recanto da Paz</span></h2>
             <Text>Viva o Paraíso de Caraiva: Encante-se com a Experiência Única de Hospedagem em Chalés Exclusivos!</Text>
           </SectionTitle>
-          <PhotoGrid photos={photos} />
+          <div className='relative'>
+            <FloatReservation />
+            <PhotoGrid photos={photos} />
+          </div>
         </section>
         <section className='bg-gray-200'>
           <SectionTitle>

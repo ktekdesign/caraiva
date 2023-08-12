@@ -1,16 +1,12 @@
 "use client"
-import BookingForm from "@/components/booking-form"
-import Cart from "@/components/cart"
 import Menu from "@/components/menu"
-import Modal from "@/components/modal"
+import ReservationButton from "@/components/reservation-button"
+import ModalContext from "@/context/modalContext"
 import { ShoppingCartIcon, UserIcon } from "@heroicons/react/solid"
-import { Button } from "@tremor/react"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 
 const NavBar = () => {
-    const [open, setOpen] = useState(false)
-    const toggleOpen = () => setOpen(!open)
-    const [float, setFloat] = useState(false)
+    const {toggleOpen, setFloat} = useContext(ModalContext)
     const [sticky, setSticky] = useState(false)
 
   useEffect(() => {
@@ -23,29 +19,17 @@ const NavBar = () => {
     })
   })
     return (
-    <>
-        <nav className={`navbar ${sticky ? "bg-dark px-8" : "centered-2xl px-8"}`}>
+        <nav className={`navbar ${sticky ? "bg-dark" : "centered 2xl:centered-2xl"}`}>
             <Menu />
             <div className="flex gap-4 items-center">
                 <ShoppingCartIcon onClick={() => {
                     setFloat(true)
                     toggleOpen()
-                }} className="h-8 fill-white rounded-full border border-white p-1 cursor-pointer hover:scale-125" />
-                <UserIcon className="h-8 fill-white rounded-full border border-white p-1 cursor-pointer hover:scale-125" />
-                <Button className="cta animate-bounce hover:animate-none" onClick={() => {
-                    setFloat(false)
-                    toggleOpen()
-                }}>Reserve Já!</Button>
+                }} className="navbar-icon" />
+                <UserIcon className="navbar-icon" />
+                <ReservationButton />
             </div>
         </nav>
-        <Modal float={float} open={open} toggleOpen={toggleOpen}>
-            {float ?
-                <Cart />
-                :
-                <BookingForm />
-            }
-        </Modal>
-    </>
 )
     }
 

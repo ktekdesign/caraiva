@@ -3,7 +3,7 @@ import { Button, Subtitle, TextInput, Title } from "@tremor/react"
 import { MailIcon, PaperAirplaneIcon } from "@heroicons/react/solid"
 
 const Newsletter = () => (
-    <>
+    <div>
         <Title className="heading3">Não perca nada</Title>
         <Subtitle>Fique informado de todos os eventos em Caraiva</Subtitle>
         <form className="py-2 flex" onSubmit={(e) => e.preventDefault()}>
@@ -14,7 +14,7 @@ const Newsletter = () => (
             </Button>
         </form>
 
-    </>
+    </div>
 )
 
 export default Newsletter

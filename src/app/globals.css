@@ -38,13 +38,13 @@ body {
   @apply max-w-screen-2xl mx-auto
 }
 .layout-space-x {
-  @apply px-8 xl:px-0
+  @apply px-8 2xl:px-0
 }
 section {
   @apply py-16 layout-space-x
 }
 section.dual-background {
-  @apply bg-gray-200 relative before:lg:content-[''] before:lg:absolute before:lg:top-0 before:lg:right-0 before:lg:w-1/2 before:lg:h-full before:lg:bg-tertiary
+  @apply bg-gray-200 lg:bg-transparent before:rounded-s-lg relative before:lg:content-[''] before:lg:absolute before:lg:top-0 before:lg:right-0 before:lg:w-1/2 before:lg:h-full before:lg:bg-tertiary
 }
 section .grid {
   @apply mb-0
@@ -83,8 +83,8 @@ section .grid {
   }
 }
 .home-banner {
-  min-height: calc(100vh - 150px);
-  @apply gap-8
+  min-height: calc(100vh - 86px);
+  @apply gap-8 py-12
 }
 p {
   @apply py-2 text-sm text-justify
@@ -123,7 +123,10 @@ blockquote {
   @apply text-primary
  }
 .navbar {
-  @apply flex justify-between items-center z-20 sticky top-0 mx-auto py-4
+  @apply layout-space-x flex justify-between items-center z-30 sticky top-0 mx-auto py-4
+}
+.navbar-icon {
+  @apply h-8 fill-white rounded-full border border-white p-1 cursor-pointer hover:scale-125
 }
 .cta {
   @apply bg-primary text-white font-bold py-4 px-4 lg:px-8 rounded-full hover:bg-white hover:text-primary hover:border-primary hover:scale-110
@@ -153,7 +156,7 @@ blockquote {
   @apply w-full max-w-screen-sm
 }
 .float-modal {
-  @apply w-10/12 h-full absolute right-0 max-w-[400px] left-auto
+  @apply w-10/12 h-full fixed right-0 max-w-[400px] left-auto
 }
 .close-btn {
   @apply cursor-pointer absolute top-2 left-auto right-2
@@ -163,7 +166,7 @@ blockquote {
 }
 
 .footer {
-  @apply py-8 mx-auto max-w-screen-xl layout-space-x
+  @apply py-8 mx-auto max-w-screen-xl layout-space-x gap-4 flex flex-col justify-center lg:flex-row lg:justify-between
 }
 
 .copyright {
@@ -185,13 +188,13 @@ blockquote {
   @apply width-effect
 }
 .modal {
-  @apply absolute w-full h-full top-0 left-0 z-20 items-center justify-center
+  @apply fixed w-full h-full top-0 left-0 z-40 items-center justify-center
 }
 .modal-blur {
-  @apply absolute w-full h-full top-0 left-0 backdrop-blur cursor-pointer
+  @apply fixed w-full h-full top-0 left-0 backdrop-blur cursor-pointer
 }
 .rating {
-  @apply grid gap-12 md:gap-8 grid-cols-1 md:grid-cols-3 place-items-center py-16 border-b-2 last-of-type:border-b-transparent
+  @apply grid gap-12 md:gap-8 grid-cols-1 md:grid-cols-3 py-16 border-b-2 last-of-type:border-b-transparent
 }
 .rating .column {
   @apply last-of-type:md:col-span-2
