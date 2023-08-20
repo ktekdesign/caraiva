@@ -1,6 +1,6 @@
 "use client"
 import Banner from '@/components/banner'
-import BookingForm from '@/components/booking-form'
+import BookingFlow from '@/components/booking-flow'
 import CardSwiper from '@/components/card-swiper'
 import FloatReservation from '@/components/float-reservation'
 import ParallaxSwiper from '@/components/parallax-swiper'
@@ -17,22 +17,22 @@ export default function Home() {
     <>
       <Banner url='/images/banner.webp' />
       <main>
-        <section className='centered py-0'>
-          <Grid numItems={1} numItemsLg={2} className="home-banner">
-            <Col>
-              <Slide direction="down">
-                <h1 className='heading1 text-white drop-shadow-lg'>Descubra o <span className='text-primary color-effect'>Paraíso Escondido</span>: Caraiva na Bahia!</h1>
-                <Text className='py-8 text-white paragraph1 drop-shadow-lg text-left'>
-                  Explore suas Praias Deslumbrantes e Cultura Encantadora - Uma Viagem Inesquecível! 
-                </Text>
-              </Slide>
-            </Col>
-            <Col>
-              <Slide direction="up">
-                <BookingForm />
-              </Slide>
-            </Col>
-          </Grid>
+        <section className='py-0'>
+          <div className='inner-centered'>
+            <Grid numItems={1} numItemsLg={2} className="home-banner">
+              <Col>
+                <Slide direction="left">
+                  <h1 className='heading1 text-white drop-shadow-lg'>Descubra o <span className='text-primary color-effect'>Paraíso Escondido</span>: Caraiva na Bahia!</h1>
+                  <Text className='py-8 text-white paragraph1 drop-shadow-lg text-left'>
+                    Explore suas Praias Deslumbrantes e Cultura Encantadora - Uma Viagem Inesquecível! 
+                  </Text>
+                </Slide>
+              </Col>
+              <Col>
+                <BookingFlow />
+              </Col>
+            </Grid>
+          </div>
         </section>
         <section className='dual-background'>
           <div className='inner-centered'>

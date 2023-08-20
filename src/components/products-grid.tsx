@@ -1,8 +1,8 @@
 import { Card, Flex, Text } from "@tremor/react";
 import CardSwiper from "./card-swiper";
-import Link from "next/link";
 import { memo } from "react";
 import Price from "./price";
+import BuyButton from "./buy-button";
 
 const ProductGrid = ({products}) => (
   <Flex className='gap-12 flex-col'>
@@ -15,9 +15,8 @@ const ProductGrid = ({products}) => (
           <h2 className="heading2">Viva o melhor da Bahia</h2>
           <Text>Bem-vindo a Caraiva: Onde a Beleza da Bahia Encontra a Magia da Natureza. Descubra as Maravilhas Desse Paraíso Encantador! 🌴🌊 #Caraiva #Bahia #Paraíso #Natureza #ViagemDosSonhos</Text>
           <Price price={150} />
-          <div className="flex flex-wrap-reverse lg:flex-nowrap justify-center items-center gap-4 mt-8 text-sm lg:text-base lg:gap-8">
-            <Link href="/carrinho" className="cta-reverse">Adicionar ao carrinho</Link>
-            <Link href="/buy" className="inner-cta">Comprar</Link>
+          <div className="flex justify-center items-center gap-4 mt-8 text-sm lg:text-base lg:gap-8">
+            <BuyButton />
           </div>
         </div>
       </Card>       

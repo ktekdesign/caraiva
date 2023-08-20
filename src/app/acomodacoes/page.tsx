@@ -1,6 +1,6 @@
 "use client"
 import Banner from '@/components/banner'
-import BookingForm from '@/components/booking-form'
+import BookingFlow from '@/components/booking-flow'
 import PageTitle from '@/components/page-title'
 import PhotoGrid from '@/components/photo-grid'
 import Rating from '@/components/rating'
@@ -41,7 +41,7 @@ export default function Accomodacoes() {
       <main>
         <Grid numItems={1} className="page-banner">
           <Col>
-            <PageTitle title="Accomodações" />
+            <PageTitle title="Acomodações" />
           </Col>
         </Grid>
         <section>
@@ -80,7 +80,7 @@ export default function Accomodacoes() {
             </div>
             <div>
               <Slide direction='right'>
-                <BookingForm />
+                <BookingFlow />
               </Slide>
             </div>
           </div>

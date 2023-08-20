@@ -17,7 +17,21 @@ module.exports = {
         dark: 'var(--color-secondary)',
         // light mode
       tremor: {
-        
+        brand: {
+          faint: 'var(--color-tertiary)', // blue-50
+          muted: "#bfdbfe", // blue-200
+          subtle: "#60a5fa", // blue-400
+          DEFAULT: 'var(--color-secondary)', // blue-500
+          emphasis: 'var(--color-primary)', // blue-700
+          inverted: "#ffffff", // white
+        },
+        content: {
+          subtle: 'var(--color-secondary)', // gray-400
+          DEFAULT: '#000', // gray-500
+          emphasis: 'var(--color-primary)', // gray-700
+          strong: 'var(--color-tertiary)', // gray-900
+          inverted: "#ffffff", // white
+        },
         background: {
           subtle: "#f3f4f6", // gray-100
           DEFAULT: "#ffffff", // white

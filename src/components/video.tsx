@@ -1,23 +1,23 @@
 "use client"
-import { useContext } from "react"
+import { useState } from "react"
 import Image from "next/image"
 import { Col, Grid, Icon, Text, Title } from "@tremor/react"
 import { PlayIcon } from "@heroicons/react/solid"
 import {Zoom} from 'react-awesome-reveal'
 import Link from "next/link"
-import LightBoxContext from "@/context/lightBoxContext"
+import FsLightbox from "fslightbox-react"
 
 const Video = () => {
-    const {toggler, setToggler, setLightBoxItems} = useContext(LightBoxContext)
+    const [toggler, setToggler] = useState(false)
 
 	return (
         <div className="relative">
+            <FsLightbox toggler={toggler} sources={[
+                            'https://www.youtube.com/watch?v=QKUxLI1HCq0'
+                        ]} />
             <Zoom>
                 <Grid className="gap-8 mb-24 place-items-center" numItems={1} numItemsLg={3}>
                     <Col onClick={() => {
-                        setLightBoxItems([
-                            'https://www.youtube.com/watch?v=QKUxLI1HCq0'
-                        ])
                         setToggler(!toggler)
                     }} numColSpanLg={2} className="relative min-h-[200px] lg:min-h-[400px] flex justify-center items-center cursor-pointer w-full">
                         <Image src="/images/caraiva.jpeg" alt="" fill className="brightness-50 object-cover rounded-lg" />

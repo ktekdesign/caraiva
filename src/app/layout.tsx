@@ -3,8 +3,10 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Montserrat } from 'next/font/google'
 import Footer from './footer'
-import LightBoxContextProvider from '@/context/lightBoxContextProvider'
-import ModalContextProvider from '@/context/modalContextProvider'
+import NextProviders from './providers'
+import SupabaseSessionProvider from '@/context/supabaseSessionProvider'
+
+export const dynamic = 'force-dynamic'
 
 const montserrat = Montserrat({ subsets: ['latin'] })
 
@@ -21,13 +23,13 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body className={montserrat.className}>
-        <ModalContextProvider>
-          <NavBar />
-          <LightBoxContextProvider>
-            {children}
-          </LightBoxContextProvider>
-          <Footer />
-        </ModalContextProvider>
+        <NextProviders>
+          <SupabaseSessionProvider>
+            <NavBar />
+          </SupabaseSessionProvider>
+          {children}
+        </NextProviders>
+        <Footer />
       </body>
     </html>
   )

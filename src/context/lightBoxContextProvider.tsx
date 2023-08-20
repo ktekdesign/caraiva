@@ -5,6 +5,7 @@ import React, {
   FC,
   ReactNode,
   SetStateAction,
+  useMemo,
   useState,
 } from "react"
 import LightBoxContext from "./lightBoxContext"
@@ -15,15 +16,16 @@ type Props = {
 
 const LightBoxContextProvider: FC<Props> = ({ children }) => {
   const [lightBoxItems, setLightBoxItems]: [string[], Dispatch<SetStateAction<string[]>>] =
-    useState([""])
+    useState([])
   const [toggler, setToggler]: [boolean, Dispatch<SetStateAction<boolean>>] =
     useState(false)
-  const value = { toggler, setToggler, lightBoxItems, setLightBoxItems }
+  const value = useMemo(
+    () => ({ toggler, setToggler, setLightBoxItems }), [toggler])
   
   return (
     <LightBoxContext.Provider value={value}>
-      <FsLightbox toggler={toggler} sources={lightBoxItems} />
       {children}
+      <FsLightbox toggler={toggler} sources={lightBoxItems} />
     </LightBoxContext.Provider>
   )
 }

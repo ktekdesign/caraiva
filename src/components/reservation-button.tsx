@@ -1,18 +1,24 @@
-import ModalContext from "@/context/modalContext";
+"use client"
 import { Button } from "@tremor/react";
-import { useContext } from "react";
-import {Roll} from 'react-awesome-reveal'
+import { useState } from "react";
+import {AttentionSeeker} from 'react-awesome-reveal'
+import Modal from "./modal";
+import BookingFlow from "./booking-flow";
 
 const ReservationButton = () => {
-    const {toggleOpen, setFloat} = useContext(ModalContext)
+    const [open, setOpen] = useState(false)
     
     return (
-        <Roll className="z-20">
-            <Button className="cta" onClick={() => {
-                setFloat(false)
-                toggleOpen()
-            }}>Reserve Já!</Button>
-        </Roll>
+        <>
+            <AttentionSeeker effect="rubberBand" className="z-20">
+                <Button className="cta" onClick={() => {
+                    setOpen(true)
+                }}>Reserve Já!</Button>
+            </AttentionSeeker>
+            <Modal {...{open, setOpen}}>
+                <BookingFlow />
+            </Modal>
+        </>
     )
 }
 

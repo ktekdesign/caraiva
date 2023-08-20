@@ -4,8 +4,9 @@ import { Navigation, Autoplay } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import Image from 'next/image'
-import { Button, Card } from '@tremor/react'
+import { Card } from '@tremor/react'
 import { memo } from 'react'
+import BuyButton from './buy-button'
 
 const CardSwiper = ({slides, slidesPerView = 3, cta = false}) => (
         <Swiper
@@ -31,7 +32,7 @@ const CardSwiper = ({slides, slidesPerView = 3, cta = false}) => (
                         <div className='h-[350px] w-[350px]'>
                         <Image className='object-cover hover:brightness-50 rounded-md' src={slide} fill alt='' />
                         </div>
-                        {cta && <Button className="cta relative block mx-auto">Comprar</Button>}
+                        {cta && <BuyButton />}
                     </Card>
                 </SwiperSlide>
             ))}
