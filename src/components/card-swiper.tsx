@@ -1,12 +1,10 @@
 "use client"
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Autoplay } from 'swiper/modules'
-import 'swiper/css'
-import 'swiper/css/navigation'
-import Image from 'next/image'
 import { Card } from '@tremor/react'
 import { memo } from 'react'
 import BuyButton from './buy-button'
+import { CldImage } from 'next-cloudinary'
 
 const CardSwiper = ({slides, slidesPerView = 3, cta = false}) => (
         <Swiper
@@ -28,11 +26,17 @@ const CardSwiper = ({slides, slidesPerView = 3, cta = false}) => (
         >
             {slides?.map((slide, key) => (
                 <SwiperSlide key={key}>
-                    <Card className='ring-0'>
-                        <div className='h-[350px] w-[350px]'>
-                        <Image className='object-cover hover:brightness-50 rounded-md' src={slide} fill alt='' />
+                    <Card className='ring-0 p-0'>
+                        <div className='relative w-full'>
+                          <CldImage
+                              width="750"
+                              height="450"
+                              src={slide} alt=""
+                              className='object-cover w-full h-full min-h-[450] hover:brightness-50 rounded-md'
+                          />
+                        
                         </div>
-                        {cta && <BuyButton />}
+                        {cta && <BuyButton className="absolute z-20 -mt-16 w-full text-center" />}
                     </Card>
                 </SwiperSlide>
             ))}

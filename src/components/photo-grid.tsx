@@ -1,7 +1,8 @@
 "use client"
 import useLightBox from "@/hooks/useLightBox";
-import Image from "next/image";
 import { memo, useMemo } from "react";
+import { CldImage } from 'next-cloudinary';
+import { getImagesUrls } from "@/utils/helpers";
 
 const PhotoGrid = ({photos}) => {
     const {toggler, setToggler, setLightBoxItems} = useLightBox()
@@ -25,13 +26,19 @@ const PhotoGrid = ({photos}) => {
     return (
         <div onClick={() => {
             setToggler(!toggler)
-            setLightBoxItems(photos)
+            setLightBoxItems(getImagesUrls(photos))
         }} className="grid gap-0 grid-cols-2 md:grid-cols-4 cursor-pointer">
             {photos?.map((photo: string, key: number) => (
                 <div key={key} className={`relative ${featureds.includes(key) ? "row-span-2 col-span-2 h-[24rem]" : "h-[12rem]"}`}>
-                    <Image src={photo} fill alt="" className="object-cover hover:scale-125 hover:z-10 hover:rounded-lg hover:origin-center" />
+                    <CldImage
+                        width={featureds.includes(key) ? "900" : "600"}
+                        height={featureds.includes(key) ? "450" : "300"}
+                        src={photo} alt={""}
+                        className={`absolute object-cover hover:rounded-md hover:scale-110 hover:z-10 ${featureds.includes(key) ? "h-[24rem]" : "h-[12rem]"}`}
+                    />
                 </div>
-            ))}
+            )
+                )}
         </div>
     )
 }

@@ -1,22 +1,13 @@
 "use client"
-import { useState } from "react";
-import Modal from "./modal";
 import {ShoppingCartIcon} from "@heroicons/react/solid";
-import Cart from "./cart";
+import useCart from "@/hooks/useCart";
 
 const CartButton = () => {
-    const [open, setOpen] = useState(false)
-    const [float, setFloat] = useState(false)
+    const {setCart} = useCart()
     return (
-        <>
-            <ShoppingCartIcon onClick={() => {
-                        setFloat(true)
-                        setOpen(true)
-                    }} className="navbar-icon" />
-            <Modal {...{open, setOpen, float}}>
-                <Cart />
-            </Modal>
-        </>
+        <ShoppingCartIcon onClick={() => {
+            setCart(true)
+        }} className="navbar-icon" />
     )
 }
 

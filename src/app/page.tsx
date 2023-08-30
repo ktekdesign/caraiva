@@ -1,12 +1,13 @@
 "use client"
 import Banner from '@/components/banner'
-import BookingFlow from '@/components/booking-flow'
+import BookingForm from '@/components/booking-form'
 import CardSwiper from '@/components/card-swiper'
 import FloatReservation from '@/components/float-reservation'
 import ParallaxSwiper from '@/components/parallax-swiper'
 import PhotoGrid from '@/components/photo-grid'
 import SectionTitle from '@/components/section-title'
 import Video from '@/components/video'
+import { getImageUrl } from '@/utils/helpers'
 import { photos } from '@/utils/photos'
 import { Col, Grid, Text } from '@tremor/react'
 import Link from 'next/link'
@@ -15,7 +16,7 @@ import {Slide} from 'react-awesome-reveal'
 export default function Home() {
   return (
     <>
-      <Banner url='/images/banner.webp' />
+      <Banner url={getImageUrl("v1693300246/RWB03666_x6ndmr.jpg")} />
       <main>
         <section className='py-0'>
           <div className='inner-centered'>
@@ -29,7 +30,7 @@ export default function Home() {
                 </Slide>
               </Col>
               <Col>
-                <BookingFlow />
+                <BookingForm />
               </Col>
             </Grid>
           </div>
@@ -49,7 +50,7 @@ export default function Home() {
             <PhotoGrid photos={photos} />
           </div>
         </section>
-        <section className='bg-gray-200'>
+        <section className='bg-gray-200 pb-0 mb-16'>
           <SectionTitle>
             <h2 className="heading2">Eventos</h2>
             <Link href="/eventos" className='cta-reverse'>Ver Mais</Link>

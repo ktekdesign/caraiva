@@ -3,7 +3,7 @@ import { Button } from "@tremor/react";
 import { useState } from "react";
 import {AttentionSeeker} from 'react-awesome-reveal'
 import Modal from "./modal";
-import BookingFlow from "./booking-flow";
+import BookingForm from "./booking-form";
 
 const ReservationButton = () => {
     const [open, setOpen] = useState(false)
@@ -16,7 +16,7 @@ const ReservationButton = () => {
                 }}>Reserve Já!</Button>
             </AttentionSeeker>
             <Modal {...{open, setOpen}}>
-                <BookingFlow />
+                <BookingForm />
             </Modal>
         </>
     )

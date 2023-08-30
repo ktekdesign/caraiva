@@ -54,6 +54,12 @@ section.dual-background {
 section .grid {
   @apply mb-0
 }
+.input {
+  @apply block py-1 px-2 w-full rounded-md cursor-pointer ring-slate-100 border border-gray-200
+}
+/*input[type="date"]::-webkit-calendar-picker-indicator {
+  @apply bg-transparent bottom-0 text-transparent cursor-pointer h-auto left-0 right-0 top-0 w-full absolute;
+}*/
 .animate-slideinRight {
   animation: slideinRight .5s;
   @apply relative;
@@ -116,7 +122,7 @@ section .grid {
   }
 }
 .home-banner {
-  min-height: calc(100vh - 86px);
+  min-height: calc(100vh - 70px);
   @apply gap-8 py-16
 }
 p {
@@ -174,13 +180,13 @@ blockquote {
   @apply py-2
 }
 .cta {
-  @apply bg-primary text-white font-bold py-4 px-4 lg:px-8 rounded-full hover:border-primary hover:bg-tertiary hover:scale-110
+  @apply bg-primary text-white font-bold py-2 px-4 rounded-lg hover:border-primary hover:bg-tertiary hover:scale-110
 }
 .cta-reverse {
-  @apply text-white bg-secondary border border-tertiary font-bold py-4 px-4 lg:px-8 rounded-full hover:bg-tertiary hover:border-tertiary hover:text-black hover:scale-110
+  @apply text-white bg-secondary border border-tertiary font-bold py-2 px-4 rounded-lg hover:bg-tertiary hover:border-tertiary hover:text-black hover:scale-110
 }
 .inner-cta {
-  @apply bg-primary text-white font-bold py-4 px-4 lg:px-8 rounded-full hover:bg-dark hover:text-white hover:border-dark hover:scale-110
+  @apply bg-primary text-white font-bold py-2 px-4 rounded-lg hover:bg-dark hover:text-white hover:border-dark hover:scale-110
 }
 .heading1 {
   @apply font-extrabold text-3xl lg:text-5xl uppercase text-left
@@ -203,13 +209,18 @@ blockquote {
 .float-modal {
   @apply w-10/12 h-full fixed right-0 max-w-[400px] left-auto
 }
+.fit-modal {
+  @apply w-[930px] h-[500px] bg-transparent
+}
 .close-btn {
-  @apply cursor-pointer absolute top-2 left-auto right-2
+  @apply cursor-pointer absolute top-2 left-auto right-2 z-10
 }
 .booking-form .close-btn {
   @apply -top-2
 }
-
+.fit-modal .close-btn {
+  @apply -top-6
+}
 .footer {
   @apply py-8 inner-centered gap-4 flex flex-col justify-center lg:flex-row lg:justify-between
 }
@@ -221,7 +232,7 @@ blockquote {
   @apply w-48 h-48 fill-white hover:fill-tertiary
 }
 .parallax {
-  @apply relative h-[34vh] lg:h-[67vh] flex items-center justify-center
+  @apply relative h-[34vh] lg:h-[67vh]
 }
 .swiper-button-prev, .swiper-button-next {
   @apply after:text-white

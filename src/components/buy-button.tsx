@@ -1,25 +1,18 @@
 "use client"
 import { Button } from "@tremor/react";
-import { useState } from "react";
 import {AttentionSeeker} from 'react-awesome-reveal'
-import Modal from "./modal";
-import Cart from "./cart";
+import useCart from "@/hooks/useCart";
 
-const BuyButton = () => {
-    const [open, setOpen] = useState(false)
-    const [float, setFloat] = useState(false)
+const BuyButton = (props) => {
+    const {setCart} = useCart()
     
     return (
         <>
-            <AttentionSeeker effect="heartBeat" className="z-20">
+            <AttentionSeeker effect="heartBeat" className="z-20" {...props}>
                 <Button className="cta relative block mx-auto" onClick={() => {
-                    setFloat(true)
-                    setOpen(true)
+                    setCart(true)
                 }}>Comprar</Button>
             </AttentionSeeker>
-            <Modal {...{open, setOpen, float}}>
-                <Cart />
-            </Modal>
         </>
     )
 }
