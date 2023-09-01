@@ -9,10 +9,10 @@ export type LineItem = {
   };
   quantity: number;
   metadata?: {
-    number_adults?: string | null;
+    number_adults: string | null;
     number_children?: string | null;
-    start?: string | null;
-    end?: string | null;
+    checkin: Date;
+    checkout: Date;
   };
 };
 type CartContextData = {

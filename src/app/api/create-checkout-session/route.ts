@@ -1,6 +1,6 @@
-import { getQuantity } from "@/utils/helpers";
+import { getQuantity, get_unit_amount } from "@/utils/helpers";
 import { NextResponse } from "next/server";
-
+import { parseISO } from "date-fns";
 export async function POST(request: Request) {
   // eslint-disable-next-line @typescript-eslint/no-var-requires
   const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY, {
@@ -14,18 +14,41 @@ export async function POST(request: Request) {
   });
   const formData = await request.formData();
   const products_id = formData.getAll("product_id");
-  const starts = formData.getAll("start");
-  const ends = formData.getAll("end");
-  const metadatas = formData.getAll("metadata");
-  const metadata = metadatas.map((data) => JSON.parse(data.toString()));
-  console.log(metadata);
-  const line_items = products_id.map((price, key) => ({
-    price,
-    quantity: getQuantity(starts[key].toString(), ends[key].toString()),
-  }));
+  const checkins = formData.getAll("checkin");
+  const checkouts = formData.getAll("checkout");
+  // const number_adults = formData.getAll("number_adults");
+  // const number_children = formData.getAll("number_children");
 
-  /*const booked_days = moment(end?.toString()).diff(
-    moment(start?.toString()),
+  const line_items = products_id.map((product, key) => {
+    const checkin = parseISO(checkins[key].toString());
+    const checkout = parseISO(checkouts[key].toString());
+    const quantity = getQuantity(checkin, checkout);
+
+    const line_item = {
+      quantity,
+      /*metadata: {
+        checkin: checkins[key].toString(),
+        checkout: checkouts[key].toString(),
+        number_adults: number_adults[key].toString(),
+        number_children: number_children[key].toString(),
+      }*/
+    };
+
+    return {
+      ...line_item,
+      price_data: {
+        currency: "brl",
+        product: "prod_OUgHRLTz8fEJhT",
+        unit_amount: get_unit_amount(checkin, checkout) * 100,
+      },
+    };
+  });
+
+  /*const metadata = line_items.map(line_item => ({
+    line_item.metadata
+  }))*/
+  /*const booked_days = moment(checkout?.toString()).diff(
+    moment(checkin?.toString()),
     "days"
   );*/
 

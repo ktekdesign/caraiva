@@ -9,7 +9,7 @@ const SellMedia = ({social = true, direction = "center"}) => (
             <Link href="https://www.airbnb.com.br/rooms/854228588053595526" target="_blank">
                 <Image width={100} height={0} alt="" src="/images/airbnb.svg" className="hover:scale-125" />
             </Link>
-            <Link href="#" target="_blank">
+            <Link href="https://www.booking.com/hotel/br/pousada-recanto-da-paz-caraiva.html" target="_blank">
                 <Image width={150} height={0} alt="" src="/images/booking.svg" className="hover:scale-125" />
             </Link>
             {social && 
