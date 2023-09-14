@@ -44,8 +44,8 @@ const BookingForm = () => {
     }
     return (
         <Card className="ring-0">
+            <h2 className="heading2">Reserve Já!</h2>
             <form onSubmit={onSubmit} method="post" action="/api/create-checkout-session" className="booking-form">
-                <h2 className="heading2">Reserve Já!</h2>
                 <Text>Preencha o formulario para ver a disponibilidade</Text>
                 <Grid numItems={1} numItemsLg={2} className="gap-4 pt-4">
                     <Col numColSpanLg={2}>

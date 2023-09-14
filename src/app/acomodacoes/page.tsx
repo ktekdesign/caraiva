@@ -1,6 +1,6 @@
 "use client"
 import Banner from '@/components/banner'
-import BookingForm from '@/components/booking-form'
+import Booking from '@/components/booking'
 import PageTitle from '@/components/page-title'
 import PhotoGrid from '@/components/photo-grid'
 import Rating from '@/components/rating'
@@ -81,7 +81,7 @@ export default function Accomodacoes() {
             </div>
             <div>
               <Slide direction='right'>
-                <BookingForm />
+                <Booking />
               </Slide>
             </div>
           </div>

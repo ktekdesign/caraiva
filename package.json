@@ -12,6 +12,8 @@
     "@cloudinary/url-gen": "^1.11.2",
     "@emotion/react": "^11.11.1",
     "@heroicons/react": "^1.0.6",
+    "@sendgrid/client": "^7.7.0",
+    "@sendgrid/mail": "^7.7.0",
     "@stripe/react-stripe-js": "^2.1.2",
     "@stripe/stripe-js": "^2.1.0",
     "@supabase/auth-helpers-nextjs": "^0.7.4",

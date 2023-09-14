@@ -202,7 +202,7 @@ blockquote {
   @apply font-extrabold text-3xl lg:text-5xl uppercase text-left
 }
 .heading2 {
-  @apply font-bold text-xl lg:text-3xl uppercase text-left
+  @apply font-bold text-xl lg:text-3xl uppercase
 }
 .heading3 {
   @apply font-bold text-lg lg:text-xl text-left
