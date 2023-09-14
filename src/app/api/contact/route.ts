@@ -1,10 +1,10 @@
-import { NextApiRequest, NextApiResponse } from "next";
 import MailService from "@sendgrid/mail";
+import { NextResponse, NextRequest } from "next/server";
 
 MailService.setApiKey(process.env.SENDGRID_API_KEY || "");
 
-export async function POST(req: NextApiRequest, res: NextApiResponse) {
-  const { name, email, number, subject, text } = req.body;
+export async function POST(req: NextRequest) {
+  const { name, email, number, subject, text } = await req.json();
   const data = {
     to: "contact@ktekdesign.com",
     from: `${name}<contact@ktekdesign.com>`,
@@ -20,8 +20,8 @@ export async function POST(req: NextApiRequest, res: NextApiResponse) {
 
   try {
     await MailService.send(data);
-    res.status(200).send("Email envoyé");
+    NextResponse.json({ message: "Email envoyé" }, { status: 200 });
   } catch (error) {
-    res.status(500).send("Error proccessing charge");
+    NextResponse.json({ error: "Error proccessing charge" }, { status: 500 });
   }
 }
