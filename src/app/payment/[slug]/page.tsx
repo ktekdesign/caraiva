@@ -1,3 +1,4 @@
+"use client"
 import Modal from '@/components/modal'
 import { useState } from 'react'
 
