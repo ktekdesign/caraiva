@@ -1,6 +1,6 @@
 "use client"
 import { Text, Grid, Col, NumberInput, Button, Card, DateRangePicker, DateRangePickerValue } from "@tremor/react"
-import { UserGroupIcon } from "@heroicons/react/solid"
+import { UserGroupIcon } from "@heroicons/react/24/solid"
 import SellMedia from "./sell-media"
 import useCart from "@/hooks/useCart"
 import { getProductById, getQuantity } from "@/utils/helpers"
@@ -31,14 +31,16 @@ const BookingForm = () => {
             const quantity = getQuantity(from, to)
             addToCart({
                 id,
-                product,
+                title: product.name,
+                picture_url: product.picture,
+                unit_price: product.price,
                 quantity,
-                metadata: {
+                description: JSON.stringify({
                     number_adults: data.get("number_adults")?.toString() || "",
                     number_children: data.get("number_children")?.toString(),
                     checkin: from,
                     checkout: to
-                }
+                })
             })
         }
     }

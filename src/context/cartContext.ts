@@ -1,3 +1,4 @@
+import { Items } from "mercadopago/dist/clients/commonTypes";
 import { createContext, Dispatch, SetStateAction } from "react";
 export type LineItem = {
   id: string;
@@ -17,9 +18,9 @@ export type LineItem = {
 };
 type CartContextData = {
   setCart: Dispatch<SetStateAction<boolean>>;
-  items: LineItem[];
-  setItems: Dispatch<SetStateAction<LineItem[]>>;
-  addToCart: (lineItem: LineItem) => void;
+  items: Items[];
+  setItems: Dispatch<SetStateAction<Items[]>>;
+  addToCart: (lineItem: Items) => void;
   removeFromCart: (id: string) => void;
 };
 const CartContext = createContext({} as CartContextData);

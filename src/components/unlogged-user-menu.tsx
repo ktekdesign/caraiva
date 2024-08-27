@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Modal from "./modal";
 import LoginForm from "./login";
-import { UserIcon } from "@heroicons/react/solid";
+import { UserIcon } from "@heroicons/react/24/solid";
 import { Card } from "@tremor/react";
 
 const UnLoggedUserMenu = () => {

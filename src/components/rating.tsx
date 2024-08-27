@@ -1,5 +1,5 @@
 "use client"
-import { EyeIcon, StarIcon } from "@heroicons/react/solid"
+import { EyeIcon, StarIcon } from "@heroicons/react/24/solid"
 import { Bold } from "@tremor/react"
 import Image from "next/image"
 import Link from "next/link"

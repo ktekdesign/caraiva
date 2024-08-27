@@ -1,5 +1,5 @@
 "use client"
-import {ShoppingCartIcon} from "@heroicons/react/solid";
+import {ShoppingCartIcon} from "@heroicons/react/24/solid";
 import useCart from "@/hooks/useCart";
 
 const CartButton = () => {

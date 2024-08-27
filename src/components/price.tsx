@@ -1,4 +1,4 @@
-import { CurrencyDollarIcon } from "@heroicons/react/solid";
+import { CurrencyDollarIcon } from "@heroicons/react/24/solid";
 import { memo } from "react";
 
 const Price = ({price}) => {

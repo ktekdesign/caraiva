@@ -1,6 +1,6 @@
 "use client"
 import { useState } from "react";
-import { UserIcon } from "@heroicons/react/solid";
+import { UserIcon } from "@heroicons/react/24/solid";
 import LogoutButton from "./logout-button";
 import Link from "next/link";
 

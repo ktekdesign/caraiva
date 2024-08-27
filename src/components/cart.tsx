@@ -1,59 +1,75 @@
 "use client"
 import useCart from "@/hooks/useCart"
 import { get_unit_amount } from "@/utils/helpers"
-import { XIcon } from "@heroicons/react/solid"
+import { XMarkIcon } from "@heroicons/react/24/solid"
 import { Button, Icon } from "@tremor/react"
 import { CldImage } from "next-cloudinary"
-import { memo } from "react"
+import { memo, useEffect, useState } from "react"
+import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
 
 const Cart = () => {
+    initMercadoPago('APP_USR-8b35e57d-7a2e-4e3c-b67a-b13eed9285c4');
     const {items, removeFromCart} = useCart()
+    const [preferenceId, setPreferenceId] = useState("")
+
+    useEffect(() => {
+        if (items?.length) {
+            fetch("/api/checkout", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(items)
+            })
+            .then(res => res.json())
+            .then(data => setPreferenceId(data.id))
+        }
+    }, [items])
     return (
     items?.length ? 
-        <form action="/api/create-checkout-session" method="post">
-        {items.map((item, key) =>
+        <form action="/api/checkout" method="post">
+        {items.map((item, key) => {
+            const metadata = JSON.parse(item.description || "{}")
+            return (
             <div key={key} className="mt-8">
                 <h3 className="bg-tertiary p-2 rounded-md flex justify-between items-center flex-wrap">
                     <span className="flex items-center">
                         <CldImage
                             width="50"
                             height="50"
-                            src={item.product.picture} alt={""}
+                            src={item.picture_url || ""} alt={""}
                             className="mr-2"
                         />
-                        <strong>{item.product.name}</strong>
+                        <strong>{item.title || ""}</strong>
                     </span>
-                    <Icon icon={XIcon} className="cursor-pointer" onClick={() => removeFromCart(item.id)}></Icon>
+                    <Icon icon={XMarkIcon} className="cursor-pointer" onClick={() => removeFromCart(item.id)}></Icon>
                 </h3>
                 <div className="flex justify-between p-2">
                     <strong>Diárias: {item.quantity}</strong>
-                    <strong>Preço: {get_unit_amount(item.metadata?.checkin, item.metadata?.checkout)}</strong>
+                    <strong>Preço: {get_unit_amount(metadata?.checkin, metadata?.checkout)}</strong>
                 </div>
-                {item.metadata && 
+                {metadata && 
                     <>
                         <div className="flex justify-between p-2">
-                            <strong>Adultos: {item.metadata.number_adults?.toString()}</strong>
-                            <strong>Crianças: {item.metadata.number_children?.toString()}</strong>
+                            <strong>Adultos: {metadata.number_adults?.toString()}</strong>
+                            <strong>Crianças: {metadata.number_children?.toString()}</strong>
                         </div>
                         <div className="p-2">
-                            <small>Checkin: {new Intl.DateTimeFormat('pt-BR').format(item.metadata.checkin)}</small><br />
-                            <small>Checkout: {new Intl.DateTimeFormat('pt-BR').format(item.metadata.checkout)}</small>
+                            <small>Checkin: {metadata.checkin}</small><br />
+                            <small>Checkout: {metadata.checkout}</small>
                         </div>
                     </>
                 }
                 <div className="flex justify-between bg-slate-200 p-2 rounded-md">
                     <strong>Total</strong>
-                    <strong>{get_unit_amount(item.metadata?.checkin, item.metadata?.checkout) * item.quantity}</strong>
+                    <strong>{get_unit_amount(metadata?.checkin, metadata?.checkout) * item.quantity}</strong>
                 </div>
-                <input type="hidden" name="product_id" value={item.product.id} />
-                <input type="hidden" name="checkin" value={item.metadata?.checkin.toISOString()} />
-                <input type="hidden" name="checkout" value={item.metadata?.checkout.toISOString()} />
-                <input type="hidden" name="number_children" value={item.metadata?.number_children || ""} />
-                <input type="hidden" name="number_adults" value={item.metadata?.number_adults || ""} />
             </div>
+            )}
         )}
         <div className="text-center py-4">
-            <Button className="cta">Reservar</Button>
+            <div id="wallet_container"></div>
+            {preferenceId && <Wallet initialization={{ preferenceId }} customization={{ texts:{ valueProp: 'smart_option'}}} />}
         </div>
         </form>
     :
