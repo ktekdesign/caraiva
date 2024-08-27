@@ -6,9 +6,10 @@ import React, {
   SetStateAction,
   useState,
 } from "react"
-import CartContext, { LineItem } from "./cartContext"
+import CartContext from "./cartContext"
 import Modal from "@/components/modal"
 import Cart from "@/components/cart"
+import { Items } from "mercadopago/dist/clients/commonTypes"
 
 type Props = {
   children: ReactNode
@@ -17,7 +18,7 @@ type Props = {
 const CartContextProvider: FC<Props> = ({ children }) => {
   const [cart, setCart]: [boolean, Dispatch<SetStateAction<boolean>>] =
     useState(false)
-  const [items, setItems]: [LineItem[], Dispatch<SetStateAction<LineItem[]>>] = useState([])
+  const [items, setItems]: [Items[], Dispatch<SetStateAction<Items[]>>] = useState([])
   const addToCart = (lineItem) => {
     setItems([lineItem, ...items])
     setCart(true)

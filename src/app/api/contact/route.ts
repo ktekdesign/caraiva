@@ -22,6 +22,6 @@ export async function POST(req: NextRequest) {
     await MailService.send(data);
     NextResponse.json({ message: "Email envoyé" }, { status: 200 });
   } catch (error) {
-    NextResponse.json({ error: "Error proccessing charge" }, { status: 500 });
+    NextResponse.json({ error: error.message }, { status: 500 });
   }
 }

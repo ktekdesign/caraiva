@@ -2,7 +2,7 @@
 import useCart from "@/hooks/useCart"
 import { get_unit_amount } from "@/utils/helpers"
 import { XMarkIcon } from "@heroicons/react/24/solid"
-import { Button, Icon } from "@tremor/react"
+import { Icon } from "@tremor/react"
 import { CldImage } from "next-cloudinary"
 import { memo, useEffect, useState } from "react"
 import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
