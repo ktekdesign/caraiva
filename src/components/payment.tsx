@@ -1,13 +1,8 @@
-import useCart from "@/hooks/useCart";
 import { get_unit_amount } from "@/utils/helpers";
-import { initMercadoPago, Payment  } from "@mercadopago/sdk-react";
-import { useMemo } from "react";
-
-const PaymentCard = ({discount = 0, setPaymentId, setActive, payer}) => {
-  initMercadoPago(process.env.NEXT_PUBLIC_MERCADO_PAGO_ID || "");
-  const { items } = useCart();
-  const amount = useMemo(() => items?.reduce((acc, curr) => acc + get_unit_amount(curr.description, curr.unit_price) * curr.quantity, 0), [items])
-    
+import { Payment  } from "@mercadopago/sdk-react";
+import { memo } from "react";
+  
+const PaymentCard = ({discount = 0, setPaymentId, setActive, payer, items, amount}) => {
   return (
   <Payment onReady={() => {
     /*
@@ -89,4 +84,4 @@ const PaymentCard = ({discount = 0, setPaymentId, setActive, payer}) => {
   )
 }
 
-export default PaymentCard
+export default memo(PaymentCard)
