@@ -2,10 +2,8 @@
 import FsLightbox from "fslightbox-react"
 import React, {
   Dispatch,
-  FC,
   ReactNode,
   SetStateAction,
-  useMemo,
   useState,
 } from "react"
 import LightBoxContext from "./lightBoxContext"

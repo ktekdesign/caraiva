@@ -1,8 +1,7 @@
 'use client'
 
 import { Callout } from "@tremor/react"
-import { CheckCircleIcon, ExclamationCircleIcon, InformationCircleIcon } from '@heroicons/react/24/solid'
-import { useSearchParams } from "next/navigation"
+import { ExclamationCircleIcon } from '@heroicons/react/24/solid'
 
 export default function Messages({err} : {err: string}) {
 

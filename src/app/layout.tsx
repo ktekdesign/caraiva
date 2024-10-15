@@ -26,12 +26,12 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body className={montserrat.className}>
-        <NextProviders>
-          <SupabaseSessionProvider>
+        <SupabaseSessionProvider>
+          <NextProviders>
             <NavBar />
-          </SupabaseSessionProvider>
-          {children}
-        </NextProviders>
+            {children}
+          </NextProviders>
+        </SupabaseSessionProvider>
         <Footer />
       </body>
     </html>

@@ -15,7 +15,7 @@ const PaymentCard = ({discount = 0, setPaymentId, setActive, payer}) => {
      Aqui, você pode ocultar seu site, por exemplo.
     */
   }}
-  onSubmit={({ selectedPaymentMethod, formData }) => {
+  onSubmit={({ formData }) => {
     // callback chamado quando há click no botão de envio de dados
     return new Promise((resolve, reject) => {
       fetch("/api/process_payment", {
@@ -35,6 +35,7 @@ const PaymentCard = ({discount = 0, setPaymentId, setActive, payer}) => {
         })
         .catch((error) => {
           // manejar a resposta de erro ao tentar criar um pagamento
+          console.log(error)
           reject();
         });
     });

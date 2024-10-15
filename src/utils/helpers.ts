@@ -1,7 +1,6 @@
 import { getCldImageUrl } from "next-cloudinary";
 import { products } from "./products";
 import { differenceInDays, differenceInBusinessDays } from "date-fns";
-import { it } from "node:test";
 
 export const getImageUrl = (image) => getCldImageUrl({ src: image });
 
@@ -23,7 +22,7 @@ export const get_unit_amount = (description, price) => {
   }
   return getQuantity(checkin, checkout) * price;
 };
-export const getWithExpiry = (key) => {
+export const getWithExpiry = (key: string) => {
   const expires = localStorage.getItem("expires");
   const item = localStorage.getItem(key);
   // if the item doesn't exist, return null

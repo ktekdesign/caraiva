@@ -3,7 +3,7 @@ import { useState } from 'react'
 import Login from '../login'
 import Signup from '../signup'
 
-const Auth = ({setActive, setPayer, isCheckout=false}) => {
+const Auth = ({setActive, isCheckout=false}) => {
   const [toggle, setToggle] = useState(false)
   
   return (

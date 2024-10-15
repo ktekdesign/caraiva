@@ -1,6 +1,5 @@
 "use client"
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
-import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { Button } from '@tremor/react'
 import { useForm, SubmitHandler } from "react-hook-form"
