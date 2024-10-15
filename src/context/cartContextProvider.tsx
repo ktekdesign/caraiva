@@ -4,12 +4,15 @@ import React, {
   FC,
   ReactNode,
   SetStateAction,
+  useEffect,
   useState,
 } from "react"
 import CartContext from "./cartContext"
 import Modal from "@/components/modal"
 import Cart from "@/components/cart"
 import { Items } from "mercadopago/dist/clients/commonTypes"
+import { getWithExpiry, setWithExpiry } from "@/utils/helpers"
+import Checkout from "@/components/checkout"
 
 type Props = {
   children: ReactNode
@@ -18,23 +21,55 @@ type Props = {
 const CartContextProvider: FC<Props> = ({ children }) => {
   const [cart, setCart]: [boolean, Dispatch<SetStateAction<boolean>>] =
     useState(false)
+  const [checkout, setCheckout]: [boolean, Dispatch<SetStateAction<boolean>>] =
+    useState(false)
+    const [payer, setPayer] = useState({
+      email: "",
+      first_name: '',
+      last_name: '',
+      phone: {
+        area_code: '',
+        number: ''
+      }
+      })
   const [items, setItems]: [Items[], Dispatch<SetStateAction<Items[]>>] = useState([])
-  const addToCart = (lineItem) => {
-    setItems([lineItem, ...items])
+  const addToCart = (item: Items) => {
+    const newItems = [item, ...items]
+    setWithExpiry('cart', newItems)
+    setItems(newItems)
     setCart(true)
-}
-  const removeFromCart = id => {
+  }
+
+  const removeFromCart = (id: string) => {
     const itemsFiltered = items.filter(item => item.id !== id)
+    setWithExpiry('cart', itemsFiltered)
     setItems(itemsFiltered)
   }
-  const value = { setCart, items, setItems, addToCart, removeFromCart }
+
+  const clearCart = () => {
+    setWithExpiry('cart', [])
+    setItems([])
+  }
+
+  useEffect(() => {
+    const inCart = getWithExpiry('cart')
+    if(inCart) {
+      setItems(JSON.parse(inCart))
+    }
+    
+  }, [])
+
+  const value = { setCart, setCheckout, items, setItems, addToCart, removeFromCart, clearCart, payer, setPayer }
 
   return (
     <CartContext.Provider value={value}>
       {children}
-      <Modal {...{open: cart, setOpen: setCart, float: true}}>
-          <Cart />
-        </Modal>
+      <Modal {...{open: cart, setOpen: setCart}} float>
+        <Cart />
+      </Modal>
+      <Modal {...{open: checkout, setOpen: setCheckout}} fit>
+        <Checkout />
+      </Modal>
     </CartContext.Provider>
   )
 }

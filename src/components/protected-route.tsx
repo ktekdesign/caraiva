@@ -8,12 +8,9 @@ export default async function ProtectedRoute ({children} : {children?: ReactNode
     return (
         <main>
             <ProtectedComponent>
-                <StickyPage>
-                    <LoginForm />
-                </StickyPage>
-                <StickyPage>
+                <StickyPage />
+                    <LoginForm setActive={null} setToggle={null} />
                     {children}
-                </StickyPage>
             </ProtectedComponent>
         </main>
     )

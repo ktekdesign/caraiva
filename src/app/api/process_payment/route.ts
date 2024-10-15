@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { MercadoPagoConfig, Payment } from "mercadopago";
 
 export async function POST(request: Request) {
-  const { type, data } = await request.json();
+  const body = await request.json();
 
   try {
     const client = new MercadoPagoConfig({
@@ -11,12 +11,13 @@ export async function POST(request: Request) {
         integratorId: process.env.MERCADO_PAGO_INTEGRATOR_ID,
       },
     });
+
     const payment = new Payment(client);
-    if (type === "payment") {
-      const response = await payment.get({ id: data.id });
-      return NextResponse.json(response, { status: 200 });
-    }
+    const response = await payment.create({ body });
+    console.log(response);
+    return NextResponse.json(response, { status: 200 });
   } catch (error) {
+    console.error(error);
     return NextResponse.json(error, { status: 500 });
   }
 }

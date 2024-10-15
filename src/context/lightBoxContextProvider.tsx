@@ -10,17 +10,12 @@ import React, {
 } from "react"
 import LightBoxContext from "./lightBoxContext"
 
-type Props = {
-  children: ReactNode
-}
-
-const LightBoxContextProvider: FC<Props> = ({ children }) => {
+const LightBoxContextProvider = ({ children }: {children: ReactNode}) => {
   const [lightBoxItems, setLightBoxItems]: [string[], Dispatch<SetStateAction<string[]>>] =
     useState([])
   const [toggler, setToggler]: [boolean, Dispatch<SetStateAction<boolean>>] =
     useState(false)
-  const value = useMemo(
-    () => ({ toggler, setToggler, setLightBoxItems }), [toggler])
+  const value = { toggler, setToggler, setLightBoxItems }
   
   return (
     <LightBoxContext.Provider value={value}>

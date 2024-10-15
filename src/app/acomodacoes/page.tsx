@@ -1,6 +1,6 @@
 "use client"
 import Banner from '@/components/banner'
-import Booking from '@/components/booking'
+import Booking from '@/components/booking-form'
 import PageTitle from '@/components/page-title'
 import PhotoGrid from '@/components/photo-grid'
 import Rating from '@/components/rating'

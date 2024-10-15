@@ -6,10 +6,9 @@ export async function POST(request: Request) {
 
   try {
     const client = new MercadoPagoConfig({
-      accessToken:
-        "APP_USR-2321818572140042-082618-5e9b37a944126b35d92777104dae95a6-1962251723",
+      accessToken: process.env.MERCADO_PAGO_ACCESS_TOKEN || "",
       options: {
-        integratorId: "dev_24c65fb163bf11ea96500242ac130004",
+        integratorId: process.env.MERCADO_PAGO_INTEGRATOR_ID,
       },
     });
 
@@ -19,11 +18,6 @@ export async function POST(request: Request) {
       body: {
         items,
         payment_methods: {
-          excluded_payment_methods: [
-            {
-              id: "visa",
-            },
-          ],
           installments: 6,
         },
         back_urls: {

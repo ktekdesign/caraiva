@@ -3,9 +3,9 @@ import SupabaseSession from "@/context/supabaseSession";
 import { useContext } from "react";
 
 const useSupabaseSession = () => {
-  const { isLogged, userId } = useContext(SupabaseSession);
+  const { isLogged, userId, user } = useContext(SupabaseSession);
 
-  return { isLogged, userId };
+  return { isLogged, userId, user };
 };
 
 export default useSupabaseSession;

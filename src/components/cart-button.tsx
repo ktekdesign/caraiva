@@ -1,9 +1,24 @@
 "use client"
 import {ShoppingCartIcon} from "@heroicons/react/24/solid";
 import useCart from "@/hooks/useCart";
+import useSupabaseSession from "@/hooks/useSupabaseSession";
+import { useEffect } from "react";
 
 const CartButton = () => {
-    const {setCart, items} = useCart()
+    const {user, isLogged} = useSupabaseSession()
+    const {setCart, items, setPayer} = useCart()
+    useEffect(() => {
+        if (isLogged) {
+            setPayer({
+                email: user?.email,
+                last_name: user?.user_metadata?.last_name,
+                first_name: user?.user_metadata?.first_name,
+                phone: {
+                  number: user?.phone
+                }
+            })
+        }
+    }, [isLogged])
     return (
         <div className="relative">
             <ShoppingCartIcon onClick={() => {

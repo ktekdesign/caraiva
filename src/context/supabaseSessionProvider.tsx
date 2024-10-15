@@ -22,7 +22,8 @@ const SupabaseSessionProvider: FC<Props> = ({ children }) => {
         const {data: {session}} = await supabase.auth.getSession()
         setValue({
           isLogged: session?.user.role === "authenticated",
-          userId: session?.user.id ?? ""
+          userId: session?.user.id ?? "",
+          user: session?.user
         })
       } catch (err) {
         console.error(err)

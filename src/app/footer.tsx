@@ -10,7 +10,7 @@ const Footer = () => (
             <div className="footer">
                 <FooterContact />
                 <div>
-                    <Title className="heading3">Reserve</Title>
+                    <Title className="heading3 text-secondary">Reserve</Title>
                     <Text>Escolha a plataforma pela qual você deseja ser atendido (a)</Text>
                     <SellMedia direction="start" />
                 </div>

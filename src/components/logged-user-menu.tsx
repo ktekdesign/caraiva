@@ -3,10 +3,12 @@ import { useState } from "react";
 import { UserIcon } from "@heroicons/react/24/solid";
 import LogoutButton from "./logout-button";
 import Link from "next/link";
+import useCart from "@/hooks/useCart";
 
 const LoggedUserMenu = () => {
     const [open, setOpen] = useState(false)
     const toggleOpen = () => setOpen(!open)
+    const {clearCart} = useCart()
     
     return (
         <div onMouseEnter={() => {
@@ -22,6 +24,7 @@ const LoggedUserMenu = () => {
                     <li>
                         <LogoutButton onSubmit={(e) => {
                             e.preventDefault()
+                            clearCart()
                             setOpen(false)
                         }} />
                     </li>

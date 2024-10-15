@@ -3,7 +3,7 @@ import { Text, Grid, Col, NumberInput, Button, Card, DateRangePicker, DateRangeP
 import { UserGroupIcon } from "@heroicons/react/24/solid"
 import SellMedia from "./sell-media"
 import useCart from "@/hooks/useCart"
-import { getProductById, getQuantity } from "@/utils/helpers"
+import { getProductById } from "@/utils/helpers"
 import { useState } from "react"
 import { pt } from "date-fns/locale";
 
@@ -19,27 +19,31 @@ const BookingForm = () => {
         const data = new FormData(e.target)
         
         const id = crypto.randomUUID()
-        const product = getProductById(data.get("product_id")?.toString())
-        const {from, to} = selectedDayRange
-        if (!from || !to) {
+        const product = getProductById(data.get("product_id"))
+        const {from: checkin, to: checkout} = selectedDayRange
+        if (!checkin || !checkout) {
             return setError("Escolha as datas de checkin e checkout antes de continuar");
         } else {
             setError("");
         }
         
         if(product) {
-            const quantity = getQuantity(from, to)
+            const quantity = data.get("quantity")?.toString()
+            const number_adults = data.get("number_adults")?.toString()
+            if(!quantity) return setError("Informe a quantidade de quartos")
+            if(!number_adults) return setError("Informe o número de adultos")
+            
             addToCart({
                 id,
                 title: product.name,
                 picture_url: product.picture,
                 unit_price: product.price,
-                quantity,
+                quantity: Number(quantity),
                 description: JSON.stringify({
-                    number_adults: data.get("number_adults")?.toString() || "",
+                    number_adults,
                     number_children: data.get("number_children")?.toString(),
-                    checkin: from,
-                    checkout: to
+                    checkin,
+                    checkout
                 })
             })
         }
@@ -50,9 +54,9 @@ const BookingForm = () => {
             <form onSubmit={onSubmit} method="post" action="/api/create-checkout-session" className="booking-form">
                 <Text>Preencha o formulario para ver a disponibilidade</Text>
                 <Grid numItems={1} numItemsLg={2} className="gap-4 pt-4">
-                    <Col numColSpanLg={2}>
+                    <Col>
                         <DateRangePicker value={selectedDayRange}
-                            className="max-w-full"
+                            className="max-w-full py-0 range-date"
                             onValueChange={setSelectedDayRange}
                             locale={pt}
                             placeholder="Informe as datas de checkin e checkout"
@@ -61,7 +65,9 @@ const BookingForm = () => {
                             enableSelect={false} />
                         {error && <p>{error}</p>}
                     </Col>
-                    
+                    <Col>
+                        <NumberInput name="quantity" required min={1} icon={UserGroupIcon} placeholder="Quantos Quartos?" />
+                    </Col>
                     <Col>
                         <NumberInput name="number_adults" required min={1} icon={UserGroupIcon} placeholder="Quantos Adultos?" />
                     </Col>
@@ -74,7 +80,6 @@ const BookingForm = () => {
                 </Grid>
                 <input type="hidden" name="product_id" value="price_1NhgvALwbWWTaNy5L09JdXdo" />
             </form>
-            <p className="text-center py-4">OU</p>
             <SellMedia />
             </Card>
     )

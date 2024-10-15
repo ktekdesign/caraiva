@@ -4,21 +4,35 @@ import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { Button } from '@tremor/react'
 import Messages from './messages'
+import useCart from '@/hooks/useCart'
 
-const LoginForm = () => {
+const LoginForm = ({setToggle, setActive, isCheckout=false}) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [err, setErr] = useState('')
-  
+  const {setPayer} = useCart()
   const router = useRouter()
   const supabase = createClientComponentClient()
   const handleSignIn = async (e) => {
     e.preventDefault()
-    const {error} = await supabase.auth.signInWithPassword({
+    const {error, data: {user}} = await supabase.auth.signInWithPassword({
       email,
       password,
     })
     if(error) setErr(error.message)
+      console.log(user)
+    setPayer({
+      email: user?.email,
+      last_name: user?.user_metadata?.last_name,
+      first_name: user?.user_metadata?.first_name,
+      phone: {
+        number: user?.phone
+      }
+    })
+    if(isCheckout) {
+      setActive("tab1")
+      return
+    }
     router.refresh()
   }
   
@@ -55,12 +69,16 @@ const LoginForm = () => {
         <Button onClick={handleSignIn} className="cta flex-grow">
           Entrar
         </Button>
-        <Button
-          formAction="/auth/sign-up"
+        {isCheckout && <Button
           className="cta-reverse flex-grow"
+          onClick={(e) => {
+            e.preventDefault()
+            setToggle(false)
+          }}
         >
           Cadastrar
         </Button>
+        }
         </div>
       </form>
   )
