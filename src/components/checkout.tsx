@@ -12,7 +12,7 @@ import { useState } from "react"
 import Auth from "./auth"
 
 const Checkout = () => {
-  const {items, payer, setPayer} = useCart()
+  const {items, payer} = useCart()
   const [paymentId, setPaymentId] = useState("");
   const [active, setActive] = useState("tab0")
 
@@ -25,7 +25,7 @@ const Checkout = () => {
       </TabsList>
       <div className="p-4 bg-white rounded-b-md">
         <TabsContent className="outline-none" value="tab0">
-          <Auth setActive={setActive} setPayer={setPayer} isCheckout />
+          <Auth setActive={setActive} isCheckout />
         </TabsContent>
         <TabsContent className="outline-none" value="tab1">
           {items?.length && <Payment setPaymentId={setPaymentId} setActive={setActive} payer={payer} />}

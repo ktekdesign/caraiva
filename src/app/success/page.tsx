@@ -19,16 +19,15 @@ const Success = ({searchParams}) => {
   }, [session_id]);
 
   return (
-    <StickyPage>
-        <main>
-            <div className='inner-centered'>
-                <h1>O seu pagamento foi bem processado</h1>
-                <div className="sr-callout">
-                    <pre>{JSON.stringify(session, null, 2)}</pre>
-                </div>
+    <main>
+        <StickyPage />
+        <div className='inner-centered'>
+            <h1>O seu pagamento foi bem processado</h1>
+            <div className="sr-callout">
+                <pre>{JSON.stringify(session, null, 2)}</pre>
             </div>
-        </main>  
-          </StickyPage>
+        </div>
+    </main>
   );
 };
 
