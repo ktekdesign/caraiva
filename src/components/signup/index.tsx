@@ -11,8 +11,7 @@ type Inputs = {
   first_name: string
   last_name: string,
   email: string,
-  phone: string,
-  'cf-turnstile-response': string
+  phone: string
 }
 
 const SignUpForm = ({setActive, setToggle}) => {
@@ -35,13 +34,13 @@ const SignUpForm = ({setActive, setToggle}) => {
       }
     }
     if(!user){
-      console.log(data)
-    const {error} = await supabase.auth.signInAnonymously({
-      options: {
-        captchaToken: data['cf-turnstile-response'],
-        data: customer
-      }})
-    if(error) return setErr(error.message)
+      const captchaToken = (document.getElementsByName('cf-turnstile-response')[0] as HTMLInputElement)?.value
+      const {error} = await supabase.auth.signInAnonymously({
+        options: {
+          captchaToken,
+          data: customer
+        }})
+      if(error) return setErr(error.message)
     }
     setActive("tab1")
   }
