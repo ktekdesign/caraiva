@@ -11,7 +11,8 @@ type Inputs = {
   first_name: string
   last_name: string,
   email: string,
-  phone: string
+  phone: string,
+  'cf-turnstile-response': string
 }
 
 const SignUpForm = ({setActive, setToggle}) => {
