@@ -1,8 +1,8 @@
 import { get_unit_amount } from "@/utils/helpers";
 import { Payment  } from "@mercadopago/sdk-react";
 import { memo } from "react";
-  
-const PaymentCard = ({discount = 0, setPaymentId, setActive, payer, items, amount}) => {
+
+const PaymentCard = ({discount = 0, setPaymentId, setActive, user, items, amount, clearCart}) => {
   return (
   <Payment onReady={() => {
     /*
@@ -25,6 +25,7 @@ const PaymentCard = ({discount = 0, setPaymentId, setActive, payer, items, amoun
           // receber o resultado do pagamento
           console.log(response);
           setPaymentId(response.id);
+          clearCart();
           setActive("tab2");
           resolve(response)
         })
@@ -45,7 +46,11 @@ const PaymentCard = ({discount = 0, setPaymentId, setActive, payer, items, amoun
     */
     amount: amount - discount,
     // preferenceId,
-    payer,
+    payer: {
+      email: user.user_metadata.email,
+      lastName: user.user_metadata.lastName,
+      firstName: user.user_metadata.firstName
+    },
     items: {
       totalItemsAmount: amount,
       itemsList: items.map((item) => (

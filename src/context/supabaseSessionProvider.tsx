@@ -16,7 +16,7 @@ const SupabaseSessionProvider: FC<Props> = ({ children }) => {
   const [value, setValue] = useState({} as SupabaseData)
 
   useEffect(() => {
-    const getSession = async () => {
+    (async () => {
       try {
         const supabase = createClientComponentClient()
         const {data: {session}} = await supabase.auth.getSession()
@@ -28,8 +28,7 @@ const SupabaseSessionProvider: FC<Props> = ({ children }) => {
       } catch (err) {
         console.error(err)
       }
-    }
-    getSession()
+    })()
   })
    
   return (

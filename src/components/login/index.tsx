@@ -4,31 +4,34 @@ import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { Button } from '@tremor/react'
 import Messages from './messages'
-import useCart from '@/hooks/useCart'
+import { useForm, SubmitHandler } from "react-hook-form"
 
-const LoginForm = ({setToggle, setActive, isCheckout=false}) => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+type Inputs = {
+  email: string
+  password: string
+}
+
+const LoginForm = ({setToggle, setActive, isCheckout = false}) => {
   const [err, setErr] = useState('')
-  const {setPayer} = useCart()
   const router = useRouter()
   const supabase = createClientComponentClient()
-  const handleSignIn = async (e) => {
-    e.preventDefault()
-    const {error, data: {user}} = await supabase.auth.signInWithPassword({
+  
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Inputs>()
+
+  const onSubmit: SubmitHandler<Inputs> = async ({email, password}) => {
+    const {error} = await supabase.auth.signInWithPassword({
       email,
       password,
     })
-    if(error) setErr(error.message)
-      console.log(user)
-    setPayer({
-      email: user?.email,
-      last_name: user?.user_metadata?.last_name,
-      first_name: user?.user_metadata?.first_name,
-      phone: {
-        number: user?.phone
-      }
-    })
+    if(error) {
+      setErr(error?.message || '')
+      return
+    }
+
     if(isCheckout) {
       setActive("tab1")
       return
@@ -39,34 +42,28 @@ const LoginForm = ({setToggle, setActive, isCheckout=false}) => {
   return (
     <form
         className="form flex-1 flex flex-col w-full justify-center gap-2 text-foreground"
-        action="/auth/sign-in"
-        method="post"
+        onSubmit={handleSubmit(onSubmit)}
       >
         <Messages err={err} />
         <label className="text-md" htmlFor="email">
-          Email
+          Email {errors.email && <span>(Esse campo é obrigatório)</span>}
         </label>
         <input
           className="rounded-md px-4 py-2 bg-inherit border mb-6"
-          name="email"
           placeholder="email@example.com"
-          onChange={(e) => setEmail(e.target.value)} value={email}
-          required
+          {...register("email", { required: true })}
         />
         <label className="text-md" htmlFor="password">
-          Senha
+          Senha {errors.password && <span>(Esse campo é obrigatório)</span>}
         </label>
         <input
           className="rounded-md px-4 py-2 bg-inherit border mb-6"
           type="password"
-          name="password"
           placeholder="••••••••"
-          onChange={(e) => setPassword(e.target.value)}
-          value={password}
-          required
+          {...register("password", { required: true })}
         />
         <div className='flex flex-wrap justify-center items-center gap-16'>
-        <Button onClick={handleSignIn} className="cta flex-grow">
+        <Button className="cta flex-grow">
           Entrar
         </Button>
         {isCheckout && <Button

@@ -19,16 +19,6 @@ type Props = {
   children: ReactNode
 }
 
-type Payer = {
-  email?: string,
-  first_name?: string,
-  last_name?: string,
-  phone?: {
-    area_code?: string,
-    number?: string
-  }
-  }
-
 const CartContextProvider: FC<Props> = ({ children }) => {
   const {user} = useSupabaseSession()
     
@@ -36,7 +26,6 @@ const CartContextProvider: FC<Props> = ({ children }) => {
     useState(false)
   const [checkout, setCheckout]: [boolean, Dispatch<SetStateAction<boolean>>] =
     useState(false)
-    const [payer, setPayer] = useState({} as Payer)
   const [items, setItems]: [Items[], Dispatch<SetStateAction<Items[]>>] = useState([])
   const addToCart = (item: Items) => {
     const newItems = [item, ...items]
@@ -64,20 +53,7 @@ const CartContextProvider: FC<Props> = ({ children }) => {
     
   }, [])
 
-  useEffect(() => {
-    if (user) {
-        setPayer({
-            email: user?.email,
-            last_name: user?.user_metadata?.last_name,
-            first_name: user?.user_metadata?.first_name,
-            phone: {
-              number: user?.phone
-            }
-        })
-    }
-}, [user])
-
-  const value = { setCart, setCheckout, items, setItems, addToCart, removeFromCart, clearCart, payer, setPayer }
+  const value = { setCart, setCheckout, items, setItems, addToCart, removeFromCart, clearCart, user }
 
   return (
     <CartContext.Provider value={value}>

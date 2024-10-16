@@ -1,15 +1,7 @@
+import { User } from "@supabase/supabase-js";
 import { Items } from "mercadopago/dist/clients/commonTypes";
 import { createContext, Dispatch, SetStateAction } from "react";
 
-type Payer = {
-  email?: string;
-  first_name?: string;
-  last_name?: string;
-  phone?: {
-    area_code?: string;
-    number?: string;
-  };
-};
 type CartContextData = {
   setCart: Dispatch<SetStateAction<boolean>>;
   setCheckout: Dispatch<SetStateAction<boolean>>;
@@ -18,8 +10,7 @@ type CartContextData = {
   addToCart: (lineItem: Items) => void;
   removeFromCart: (id: string) => void;
   clearCart: () => void;
-  payer: Payer;
-  setPayer: Dispatch<SetStateAction<Payer>>;
+  user?: User;
 };
 const CartContext = createContext({} as CartContextData);
 
