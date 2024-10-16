@@ -1,6 +1,6 @@
 "use client"
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Button } from '@tremor/react'
 import { useForm, SubmitHandler } from "react-hook-form"
 import Messages from './messages'
@@ -18,7 +18,6 @@ const SignUpForm = ({setActive, setToggle}) => {
   const {
     register,
     handleSubmit,
-    setValue,
     formState: { errors },
   } = useForm<Inputs>()
   const [err, setErr] = useState("")
@@ -46,12 +45,6 @@ const SignUpForm = ({setActive, setToggle}) => {
     setActive("tab1")
   }
   
-  useEffect(() => {
-    setValue("email", user?.user_metadata?.email)
-    setValue("first_name", user?.user_metadata?.first_name)
-    setValue("last_name", user?.user_metadata?.last_name)
-    setValue("phone", user?.user_metadata?.phone)
-  })
   return (
     <>
     <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js" defer />
@@ -71,7 +64,7 @@ const SignUpForm = ({setActive, setToggle}) => {
         </label>
         <input
           className="rounded-md px-4 py-2 bg-inherit border"
-          {...register("first_name", { required: true })}
+          {...register("first_name", { required: true, setValueAs: user?.user_metadata?.first_name || "" })}
           defaultValue={user?.user_metadata?.first_name || ""}
           placeholder="Primeiro nome"
         />
@@ -83,7 +76,7 @@ const SignUpForm = ({setActive, setToggle}) => {
         </label>
         <input
           className="rounded-md px-4 py-2 bg-inherit border"
-          {...register("last_name")}
+          {...register("last_name", {})}
           placeholder="Sobrenome"
           defaultValue={user?.user_metadata?.last_name || ""}
         />

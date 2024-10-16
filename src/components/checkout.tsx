@@ -1,5 +1,4 @@
 "use client"
-import useCart from "@/hooks/useCart"
 import Payment from "./payment"
 import {
   Tabs,
@@ -8,9 +7,8 @@ import {
   TabsTrigger,
 } from "./tabs"
 import { initMercadoPago } from "@mercadopago/sdk-react"
-import { useState, useMemo } from "react"
+import { useState } from "react"
 import Auth from "./auth"
-import { get_unit_amount } from "@/utils/helpers"
 import useSupabaseSession from "@/hooks/useSupabaseSession"
 import Status from "./status"
 
@@ -18,10 +16,8 @@ const Checkout = () => {
   initMercadoPago(process.env.NEXT_PUBLIC_MERCADO_PAGO_ID || "");
   const {user} = useSupabaseSession()
   
-  const {items, clearCart} = useCart()
   const [paymentId, setPaymentId] = useState("");
   const [active, setActive] = useState("tab0")
-  const amount = useMemo(() => items?.reduce((acc, curr) => acc + get_unit_amount(curr.description, curr.unit_price) * curr.quantity, 0), [items])
 
   return (
     <Tabs value={active} onValueChange={(value) => setActive(value)}>
@@ -35,7 +31,7 @@ const Checkout = () => {
           <Auth setActive={setActive} isCheckout />
         </TabsContent>
         <TabsContent className="outline-none" value="tab1">
-          <Payment setPaymentId={setPaymentId} setActive={setActive} items={items} amount={amount} clearCart={clearCart} user={user} />
+          <Payment setPaymentId={setPaymentId} setActive={setActive} />
         </TabsContent>
         <TabsContent className="outline-none" value="tab2">
           <Status paymentId={paymentId} />

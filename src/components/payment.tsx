@@ -1,8 +1,11 @@
+import useCart from "@/hooks/useCart";
 import { get_unit_amount } from "@/utils/helpers";
 import { Payment } from "@mercadopago/sdk-react";
-import { memo } from "react";
+import { memo, useMemo } from "react";
 
-const PaymentCard = ({discount = 0, setPaymentId, setActive, items, amount, clearCart, user}) => {
+const PaymentCard = ({discount = 0, setPaymentId, setActive}) => {
+  const {items, clearCart} = useCart()
+  const amount = useMemo(() => items?.reduce((acc, curr) => acc + get_unit_amount(curr.description, curr.unit_price) * curr.quantity, 0), [items])
 
   return (
   <Payment onReady={() => {
@@ -46,12 +49,6 @@ const PaymentCard = ({discount = 0, setPaymentId, setActive, items, amount, clea
       "amount" é a quantia total a pagar por todos os meios de pagamento com exceção da Conta Mercado Pago e Parcelas sem cartão de crédito, que têm seus valores de processamento determinados no backend através do "preferenceId"
     */
     amount: amount - discount,
-    // preferenceId,
-    payer: {
-      email: user?.user_metadata?.email,
-      lastName: user?.user_metadata?.lastName,
-      firstName: user?.user_metadata?.firstName
-    },
     items: {
       totalItemsAmount: amount,
       itemsList: items.map((item) => (
@@ -72,11 +69,15 @@ const PaymentCard = ({discount = 0, setPaymentId, setActive, items, amount, clea
   customization={{
     visual: {
       hideFormTitle: true,
+      defaultPaymentOption: {
+        creditCardForm: true
+      },
       style: {
         theme: "default",
         customVariables: {
           textPrimaryColor: '#008080',
-          baseColor: '#008080'
+          baseColor: '#008080',
+          fontSizeSmall: '10px'
       }
       },
     },
