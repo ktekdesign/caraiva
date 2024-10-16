@@ -1,10 +1,8 @@
-import useSupabaseSession from "@/hooks/useSupabaseSession";
 import { get_unit_amount } from "@/utils/helpers";
 import { Payment } from "@mercadopago/sdk-react";
 import { memo } from "react";
 
-const PaymentCard = ({discount = 0, setPaymentId, setActive, items, amount, clearCart}) => {
-  const {user} = useSupabaseSession()
+const PaymentCard = ({discount = 0, setPaymentId, setActive, items, amount, clearCart, user}) => {
 
   return (
   <Payment onReady={() => {

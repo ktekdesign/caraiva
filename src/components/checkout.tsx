@@ -35,7 +35,7 @@ const Checkout = () => {
           <Auth setActive={setActive} isCheckout />
         </TabsContent>
         <TabsContent className="outline-none" value="tab1">
-          <Payment setPaymentId={setPaymentId} setActive={setActive} items={items} amount={amount} clearCart={clearCart} />
+          <Payment setPaymentId={setPaymentId} setActive={setActive} items={items} amount={amount} clearCart={clearCart} user={user} />
         </TabsContent>
         <TabsContent className="outline-none" value="tab2">
           <Status paymentId={paymentId} />
