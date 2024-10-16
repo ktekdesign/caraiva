@@ -13,15 +13,12 @@ import Cart from "@/components/cart"
 import { Items } from "mercadopago/dist/clients/commonTypes"
 import { getWithExpiry, setWithExpiry } from "@/utils/helpers"
 import Checkout from "@/components/checkout"
-import useSupabaseSession from "@/hooks/useSupabaseSession";
 
 type Props = {
   children: ReactNode
 }
 
-const CartContextProvider: FC<Props> = ({ children }) => {
-  const {user} = useSupabaseSession()
-    
+const CartContextProvider: FC<Props> = ({ children }) => {    
   const [cart, setCart]: [boolean, Dispatch<SetStateAction<boolean>>] =
     useState(false)
   const [checkout, setCheckout]: [boolean, Dispatch<SetStateAction<boolean>>] =
@@ -53,7 +50,7 @@ const CartContextProvider: FC<Props> = ({ children }) => {
     
   }, [])
 
-  const value = { setCart, setCheckout, items, setItems, addToCart, removeFromCart, clearCart, user }
+  const value = { setCart, setCheckout, items, setItems, addToCart, removeFromCart, clearCart }
 
   return (
     <CartContext.Provider value={value}>
