@@ -22,7 +22,7 @@ const Checkout = () => {
   return (
     <Tabs value={active} onValueChange={(value) => setActive(value)}>
       <TabsList className="grid w-full grid-cols-3 rounded-none rounded-t-md" variant="solid">
-        <TabsTrigger className="outline-none" value="tab0">Identificação</TabsTrigger>
+        <TabsTrigger disabled={!!user} className="outline-none" value="tab0">Identificação</TabsTrigger>
         <TabsTrigger disabled={!user?.user_metadata.email && !user?.user_metadata.phone} className="outline-none" value="tab1">Pagamento</TabsTrigger>
         <TabsTrigger disabled={!paymentId} className="outline-none" value="tab2">Status</TabsTrigger>
       </TabsList>

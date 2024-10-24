@@ -15,12 +15,9 @@ export const getQuantity = (start, end) => differenceInDays(end, start);
 export const getBusinessQuantity = (start, end) =>
   differenceInBusinessDays(end, start);
 
-export const get_unit_amount = (description, price) => {
-  const { checkin, checkout } = JSON.parse(description);
-  if (!checkin || !checkout) {
-    return 0;
-  }
-  return getQuantity(checkin, checkout) * price;
+export const get_unit_amount = ({ checkin, checkout, unit_price }) => {
+  if (!checkin || !checkout) return 0;
+  return getQuantity(new Date(checkin), new Date(checkout)) * unit_price;
 };
 export const getWithExpiry = (key: string) => {
   const expires = localStorage.getItem("expires");

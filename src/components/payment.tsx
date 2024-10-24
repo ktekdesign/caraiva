@@ -1,12 +1,11 @@
 import useCart from "@/hooks/useCart";
 import { get_unit_amount } from "@/utils/helpers";
 import { Payment } from "@mercadopago/sdk-react";
-import { memo, useMemo } from "react";
+import { memo } from "react";
 
 const PaymentCard = ({discount = 0, setPaymentId, setActive}) => {
-  const {items, clearCart} = useCart()
-  const amount = useMemo(() => items?.reduce((acc, curr) => acc + get_unit_amount(curr.description, curr.unit_price) * curr.quantity, 0), [items])
-
+  const {items, clearCart, amount} = useCart()
+  
   return (
   <Payment onReady={() => {
     /*
@@ -54,7 +53,7 @@ const PaymentCard = ({discount = 0, setPaymentId, setActive}) => {
       itemsList: items.map((item) => (
         {
           units: item.quantity,
-          value: get_unit_amount(item.description, item.unit_price),
+          value: get_unit_amount({checkin: item.description, checkout: item.checkout, unit_price: item.unit_price}),
           name: item.title,
           description: item.description,
           imageURL: item.picture_url,

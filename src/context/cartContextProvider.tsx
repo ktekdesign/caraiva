@@ -5,13 +5,13 @@ import React, {
   ReactNode,
   SetStateAction,
   useEffect,
+  useMemo,
   useState,
 } from "react"
-import CartContext from "./cartContext"
+import CartContext, { CartItem } from "./cartContext"
 import Modal from "@/components/modal"
 import Cart from "@/components/cart"
-import { Items } from "mercadopago/dist/clients/commonTypes"
-import { getWithExpiry, setWithExpiry } from "@/utils/helpers"
+import { get_unit_amount, getWithExpiry, setWithExpiry } from "@/utils/helpers"
 import Checkout from "@/components/checkout"
 
 type Props = {
@@ -23,8 +23,8 @@ const CartContextProvider: FC<Props> = ({ children }) => {
     useState(false)
   const [checkout, setCheckout]: [boolean, Dispatch<SetStateAction<boolean>>] =
     useState(false)
-  const [items, setItems]: [Items[], Dispatch<SetStateAction<Items[]>>] = useState([])
-  const addToCart = (item: Items) => {
+  const [items, setItems]: [CartItem[], Dispatch<SetStateAction<CartItem[]>>] = useState([])
+  const addToCart = (item: CartItem) => {
     const newItems = [item, ...items]
     setWithExpiry('cart', newItems)
     setItems(newItems)
@@ -50,7 +50,10 @@ const CartContextProvider: FC<Props> = ({ children }) => {
     
   }, [])
 
-  const value = { setCart, setCheckout, items, setItems, addToCart, removeFromCart, clearCart }
+  const amount = useMemo(() => items?.reduce((acc, {unit_price, checkin, checkout, quantity}) => acc + get_unit_amount({unit_price, checkin, checkout}) * quantity, 0), [items])
+  
+
+  const value = { setCart, setCheckout, items, setItems, addToCart, removeFromCart, clearCart, amount }
 
   return (
     <CartContext.Provider value={value}>

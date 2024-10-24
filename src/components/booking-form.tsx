@@ -1,51 +1,63 @@
 "use client"
 import { Text, Grid, Col, NumberInput, Button, Card, DateRangePicker, DateRangePickerValue } from "@tremor/react"
-import { UserGroupIcon } from "@heroicons/react/24/solid"
+import { UserGroupIcon, HomeIcon, UsersIcon } from "@heroicons/react/24/solid"
 import SellMedia from "./sell-media"
 import useCart from "@/hooks/useCart"
-import { getProductById } from "@/utils/helpers"
-import { useState } from "react"
+import { FormEvent, useState } from "react"
 import { pt } from "date-fns/locale";
 
 const BookingForm = () => {
     const [selectedDayRange, setSelectedDayRange] = useState<DateRangePickerValue>({
         from: undefined,
         to: undefined,
-      });
-      const [error, setError] = useState("")
+    })
+    const [error, setError] = useState("")
     const {addToCart} = useCart()
-    const onSubmit = e => {
+    const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const data = new FormData(e.target)
+        const formData = new FormData(e.currentTarget)
         
         const id = crypto.randomUUID()
-        const product = getProductById(data.get("product_id"))
         const {from: checkin, to: checkout} = selectedDayRange
         if (!checkin || !checkout) {
-            return setError("Escolha as datas de checkin e checkout antes de continuar");
+            setError("Escolha as datas de checkin e checkout antes de continuar")
+            return
         } else {
             setError("");
         }
+
+        const quantity = Number(formData.get("quantity"))
+        const number_adults = Number(formData.get("number_adults"))
+        const number_children = Number(formData.get("number_children"))
+        if(!quantity) return setError("Informe a quantidade de quartos")
+        if(!number_adults) return setError("Informe o número de hóspedes")
+
+        try {
+            const response = await fetch('/api/check-availability/', {
+                method: 'POST',
+                body: JSON.stringify({checkin, checkout, quantity})
+            })
+
+            const availability = await response.json()
+    
+            if(availability) {
         
-        if(product) {
-            const quantity = data.get("quantity")?.toString()
-            const number_adults = data.get("number_adults")?.toString()
-            if(!quantity) return setError("Informe a quantidade de quartos")
-            if(!number_adults) return setError("Informe o número de adultos")
-            
-            addToCart({
-                id,
-                title: product.name,
-                picture_url: product.picture,
-                unit_price: product.price,
-                quantity: Number(quantity),
-                description: JSON.stringify({
+                addToCart({
+                    id,
+                    title: availability.prices?.name || availability.prices?.products?.name,
+                    //picture_url: product.picture,
+                    unit_price: availability.prices?.unit_amount,
+                    quantity,
                     number_adults,
-                    number_children: data.get("number_children")?.toString(),
+                    number_children,
                     checkin,
                     checkout
                 })
-            })
+            } else {
+                setError('Não há vagas disponíveis.')
+            }
+        } catch (err) {
+            console.log(err)
         }
     }
     return (
@@ -66,22 +78,21 @@ const BookingForm = () => {
                         {error && <p>{error}</p>}
                     </Col>
                     <Col>
-                        <NumberInput name="quantity" required min={1} icon={UserGroupIcon} placeholder="Quantos Quartos?" />
+                        <NumberInput name="quantity" required min={1} icon={HomeIcon} placeholder="Quantos Quartos?" />
                     </Col>
                     <Col>
                         <NumberInput name="number_adults" required min={1} icon={UserGroupIcon} placeholder="Quantos Adultos?" />
                     </Col>
                     <Col>
-                        <NumberInput name="number_children" min={0} icon={UserGroupIcon} placeholder="Quantas Crianças?" />
+                        <NumberInput name="number_children" min={0} icon={UsersIcon} placeholder="Quantas Crianças?" />
                     </Col>
                     <Col numColSpanLg={2} className="text-center">
                         <Button className="cta">Ver disponibilidade</Button>
                     </Col>
                 </Grid>
-                <input type="hidden" name="product_id" value="price_1NhgvALwbWWTaNy5L09JdXdo" />
             </form>
             <SellMedia />
-            </Card>
+        </Card>
     )
 }
 

@@ -1,0 +1,91 @@
+create table
+  products (
+    id bigint primary key generated always as identity,
+    name text not null,
+    description text,
+    category text not null,
+    localization text,
+    capacity_max integer,
+    metadata jsonb,
+    user_id uuid references auth.users,
+    created_at timestamp with time zone default now(),
+    updated_at timestamp with time zone default now()
+  );
+
+create table
+  prices (
+    id bigint primary key generated always as identity,
+    product_id bigint not null references products,
+    name text,
+    description text,
+    capacity_max int,
+    unit_amount int,
+    amount_variant jsonb,
+    init_date date,
+    end_date date,
+    created_at timestamp with time zone default now(),
+    updated_at timestamp with time zone default now()
+  );
+
+create table
+  discounts (
+    id bigint primary key generated always as identity,
+    code varchar,
+    percent float,
+    name text,
+    product_category text,
+    product_id bigint references products,
+    price_id bigint references prices,
+    min_quantity int,
+    init_date date,
+    end_date date,
+    is_exclusive boolean,
+    valid_init_date date,
+    valid_end_date date,
+    created_at timestamp with time zone default now(),
+    updated_at timestamp with time zone default now()
+  );
+
+create table
+  orders (
+    id bigint primary key generated always as identity,
+    amount int not null,
+    discount int default 0,
+    tax_fee int default 0,
+    service_fee int default 0,
+    shipping_fee int default 0,
+    user_id uuid references auth.users,
+    billing jsonb,
+    shipping jsonb,
+    status varchar,
+    payment jsonb,
+    created_at timestamp with time zone default now(),
+    updated_at timestamp with time zone default now()
+  );
+
+create table
+  order_items (
+    id bigint primary key generated always as identity,
+    order_id bigint not null references orders,
+    price_id bigint not null references prices,
+    quantity int default 1,
+    init_date date,
+    end_date date,
+    number_adults int,
+    number_children int,
+    number_pets int,
+    discount int,
+    created_at timestamp with time zone default now(),
+    updated_at timestamp with time zone default now()
+  );
+
+  create table
+  availability (
+    id bigint primary key generated always as identity,
+    price_id bigint not null references prices,
+    quantity int,
+    init_date date,
+    end_date date,
+    created_at timestamp with time zone default now(),
+    updated_at timestamp with time zone default now()
+  );
