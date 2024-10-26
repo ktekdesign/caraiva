@@ -1,20 +1,26 @@
 "use client"
 import Modal from '@/components/modal'
 import { useState } from 'react'
+import { use } from 'react'
 
-export default function Payments({ params }: { params: { slug: string } }) {
+type Params = Promise<{ slug: string }>
+
+export default function Payments(props: {
+  params: Params
+}) {
+  const params = use(props.params)
+  const slug = params.slug
+  
   const [open, setOpen] = useState(true)
-  const paymentStatus = params.slug === 'success' ? 'O teu pagamento foi recebido' : params.slug === 'success' ? "O teu pagamento está pendente" : "Occoreu um erro ao tentar processar o seu pagamento. Tenta de novo."
+  const paymentStatus = slug === 'success' ? 'O teu pagamento foi recebido' : slug === 'pending' ? "O teu pagamento está pendente" : "Occoreu um erro ao tentar processar o seu pagamento. Tenta de novo."
     
   return (
-    <>
-      <main>
-        <Modal open={open} setOpen={setOpen}>
-          <p>
-            {paymentStatus}
-          </p>
-        </Modal>
-      </main>
-    </>
+    <main>
+      <Modal open={open} setOpen={setOpen}>
+        <p>
+          {paymentStatus}
+        </p>
+      </Modal>
+    </main>
   )
 }
