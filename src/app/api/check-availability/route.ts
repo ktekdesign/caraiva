@@ -7,41 +7,45 @@ export async function POST(request: Request) {
   const { checkin, checkout, quantity } = await request.json();
 
   try {
-    const availabilityQuery = supabase
-      .from("availability")
+    const { data, error } = await supabase
+      .from("products")
       .select(
         `
+            id,
+            name,
+            description,
+            metadata,
             prices (
             id,
             name,
             description,
             unit_amount,
             amount_variant,
-            products (
-                name,
-                description
+            availability (
+                init_date,
+                end_date,
+                quantity
             )
             )
         `
       )
-      .lte("init_date", checkin)
-      .gte("end_date", checkout)
-      .gte("quantity", quantity)
-      .order("updated_at", { ascending: false })
-      .single();
+      .lte("prices.availability.init_date", checkin)
+      .gte("prices.availability.end_date", checkout)
+      .gte("prices.availability.quantity", quantity)
+      .eq("category", "HOSTING");
 
-    //type Availability = QueryData<typeof availabilityQuery>;
-
-    const { data, error } = await availabilityQuery;
     if (error) {
-      console.log(error);
       return NextResponse.json(error, { status: 500 });
     }
 
-    //const availability: Availability = data;
-    return NextResponse.json(data, { status: 200 });
+    return NextResponse.json(
+      data.filter(
+        (res) =>
+          res.prices.filter((product) => product.availability.length).length
+      ),
+      { status: 200 }
+    );
   } catch (error) {
-    console.log(error);
     return NextResponse.json(error, { status: 500 });
   }
 }

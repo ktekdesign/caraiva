@@ -2,9 +2,9 @@ import { getCldImageUrl } from "next-cloudinary";
 import { products } from "./products";
 import { differenceInDays, differenceInBusinessDays } from "date-fns";
 
-export const getImageUrl = (image) => getCldImageUrl({ src: image });
+export const getImageUrl = (image: string) => getCldImageUrl({ src: image });
 
-export const getImagesUrls = (images) =>
+export const getImagesUrls = (images: string[]) =>
   images.map((image) => getImageUrl(image));
 
 export const getProductById = (id) =>
@@ -34,7 +34,7 @@ export const getWithExpiry = (key: string) => {
     localStorage.removeItem(key);
     return null;
   }
-  return item;
+  return JSON.parse(item);
 };
 
 export const setWithExpiry = (key, value) => {

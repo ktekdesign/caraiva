@@ -5,7 +5,6 @@ import FloatReservation from '@/components/float-reservation'
 import PhotoGrid from '@/components/photo-grid'
 import SectionTitle from '@/components/section-title'
 import Video from '@/components/video'
-import { getImageUrl } from '@/utils/helpers'
 import { photos } from '@/utils/photos'
 import { Col, Grid, Text } from '@tremor/react'
 import {Slide} from 'react-awesome-reveal'
@@ -13,7 +12,7 @@ import {Slide} from 'react-awesome-reveal'
 export default function Home() {
   return (
     <>
-      <Banner url={getImageUrl("v1693300246/RWB03666_x6ndmr.jpg")} />
+      <Banner src="RWB03666_x6ndmr.jpg" />
       <main>
         <section className='py-0'>
           <div className='inner-centered'>

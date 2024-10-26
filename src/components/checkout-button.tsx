@@ -7,17 +7,14 @@ const CheckoutButton = (props) => {
     const {setCart, setCheckout} = useCart()
     
     return (
-        <div>
         <div className="w-10/12 fixed max-w-[400px] bottom-5 right-0 z-50 flex justify-center">
             <AttentionSeeker effect="heartBeat" className="z-20" {...props}>
-                <Button className="block mx-auto bg-secondary" onClick={() => {
+                <Button className="mx-auto cta" onClick={() => {
                     setCart(false)
                     setCheckout(true)
                 }}>Finalizar</Button>
             </AttentionSeeker>
         </div>
-        
-    </div>
     )
 }
 

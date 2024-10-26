@@ -45,7 +45,7 @@ const CartContextProvider: FC<Props> = ({ children }) => {
   useEffect(() => {
     const inCart = getWithExpiry('cart')
     if(inCart) {
-      setItems(JSON.parse(inCart))
+      setItems(inCart)
     }
     
   }, [])

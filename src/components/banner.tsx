@@ -1,8 +1,8 @@
-import Image from "next/image";
+import { CldImage } from 'next-cloudinary';
 
-const Banner = ({url, className = "cover-banner", ...props} : {url: string, className?: string}) => (
+const Banner = ({src, className = "cover-banner", ...props} : {src: string, className?: string}) => (
     <picture className={className} {...props}>
-        <Image src={url} alt="Image de couverture" priority fill className="-z-10 object-cover" />
+        <CldImage src={src} blur alt="Image de couverture" priority fill className="-z-10 object-cover" />
     </picture>
 )
 

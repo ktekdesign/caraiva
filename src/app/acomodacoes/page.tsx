@@ -6,7 +6,6 @@ import PhotoGrid from '@/components/photo-grid'
 import Rating from '@/components/rating'
 import SectionTitle from '@/components/section-title'
 import SellMedia from '@/components/sell-media'
-import { getImageUrl } from '@/utils/helpers'
 import { photos } from '@/utils/photos'
 import { Col, Grid, Text } from '@tremor/react'
 import {Slide} from 'react-awesome-reveal'
@@ -38,7 +37,7 @@ const ratings = [
 export default function Accomodacoes() {
   return (
     <>
-      <Banner className="inner-banner" url={getImageUrl("v1693300312/RWB03671_v78dw0.jpg")} />
+      <Banner className="inner-banner" src="RWB03671_v78dw0.jpg" />
       <main>
         <Grid numItems={1} className="page-banner">
           <Col>

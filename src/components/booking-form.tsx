@@ -3,8 +3,10 @@ import { Text, Grid, Col, NumberInput, Button, Card, DateRangePicker, DateRangeP
 import { UserGroupIcon, HomeIcon, UsersIcon } from "@heroicons/react/24/solid"
 import SellMedia from "./sell-media"
 import useCart from "@/hooks/useCart"
-import { FormEvent, useState } from "react"
+import { FormEvent, useEffect, useState } from "react"
 import { pt } from "date-fns/locale";
+import { setWithExpiry } from "@/utils/helpers"
+import { useRouter } from "next/navigation"
 
 const BookingForm = () => {
     const [selectedDayRange, setSelectedDayRange] = useState<DateRangePickerValue>({
@@ -12,9 +14,13 @@ const BookingForm = () => {
         to: undefined,
     })
     const [error, setError] = useState("")
+    const [loading, isLoading] = useState(false)
+    const [disabled, isDisabled] = useState(false)
     const {addToCart} = useCart()
+    const router = useRouter()
+    
     const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+        e.preventDefault()
         const formData = new FormData(e.currentTarget)
         
         const id = crypto.randomUUID()
@@ -32,34 +38,16 @@ const BookingForm = () => {
         if(!quantity) return setError("Informe a quantidade de quartos")
         if(!number_adults) return setError("Informe o número de hóspedes")
 
-        try {
-            const response = await fetch('/api/check-availability/', {
-                method: 'POST',
-                body: JSON.stringify({checkin, checkout, quantity})
+            setWithExpiry("availability", {
+                quantity,
+                number_adults,
+                number_children,
+                checkin,
+                checkout
             })
-
-            const availability = await response.json()
-    
-            if(availability) {
-        
-                addToCart({
-                    id,
-                    title: availability.prices?.name || availability.prices?.products?.name,
-                    //picture_url: product.picture,
-                    unit_price: availability.prices?.unit_amount,
-                    quantity,
-                    number_adults,
-                    number_children,
-                    checkin,
-                    checkout
-                })
-            } else {
-                setError('Não há vagas disponíveis.')
-            }
-        } catch (err) {
-            console.log(err)
-        }
+        router.push('/check-availability')
     }
+
     return (
         <Card className="ring-0">
             <h2 className="heading2">Reserve Já!</h2>
@@ -74,8 +62,9 @@ const BookingForm = () => {
                             placeholder="Informe as datas de checkin e checkout"
                             enableYearNavigation={true}
                             minDate={new Date()}
-                            enableSelect={false} />
-                        {error && <p>{error}</p>}
+                            enableSelect={false}
+                            disabled={disabled}
+                        />
                     </Col>
                     <Col>
                         <NumberInput name="quantity" required min={1} icon={HomeIcon} placeholder="Quantos Quartos?" />
@@ -87,7 +76,8 @@ const BookingForm = () => {
                         <NumberInput name="number_children" min={0} icon={UsersIcon} placeholder="Quantas Crianças?" />
                     </Col>
                     <Col numColSpanLg={2} className="text-center">
-                        <Button className="cta">Ver disponibilidade</Button>
+                        {error && <p className="text-primary text-center">{error}</p>}
+                        <Button className="cta" loading={loading}>Ver disponibilidade</Button>
                     </Col>
                 </Grid>
             </form>
