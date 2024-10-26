@@ -4,9 +4,10 @@ import PageTitle from '@/components/page-title'
 import StickyPage from '@/components/sticky-page'
 import useCart from '@/hooks/useCart'
 import { getWithExpiry } from '@/utils/helpers'
-import { Button, Card, Col, Grid, Subtitle, Text, Title } from '@tremor/react'
+import { Button, Card, Col, Grid, Subtitle, Title } from '@tremor/react'
 import { CldImage } from 'next-cloudinary'
 import { useEffect, useState } from 'react'
+/* eslint-disable  @typescript-eslint/no-explicit-any */
 
 type DataProps = {
   availabilities: any[]
@@ -27,22 +28,19 @@ export default function Availability() {
         checkin,
         checkout} = items
       const availability = availabilities?.find(item => item.id = id)
-      
 
       if(availability) {
-          addToCart({
-              id,
-              title: availability.prices[0].name || availability.name,
-              //picture_url: product.picture,
-              unit_price: availability.prices[0].unit_amount,
-              quantity,
-              number_adults,
-              number_children,
-              checkin: new Date(checkin),
-              checkout: new Date(checkout)
-          })
-      } else {
-          //setError('Não há vagas disponíveis para essas datas.')
+        addToCart({
+            id: crypto.randomUUID(),
+            title: availability.prices[0].name || availability.name,
+            picture_url: availability.metadata.products[0],
+            unit_price: availability.prices[0].unit_amount,
+            quantity,
+            number_adults,
+            number_children,
+            checkin: new Date(checkin),
+            checkout: new Date(checkout)
+        })
       }
   } catch (err) {
       console.log(err)
@@ -63,7 +61,7 @@ export default function Availability() {
     })
 
     const availabilities = (await response.json())
-    console.log(availabilities)
+
     setItems({availabilities, quantity,
       number_adults,
       number_children,
@@ -83,7 +81,7 @@ export default function Availability() {
         </Grid>
         <section>
         {items?.availabilities?.map(item => (
-          <Card>
+          <Card key={item.id}>
             <Grid numItems={3}>
               <Col className='flex justify-center items-center pr-6'>
                 {item.metadata.pictures && <CldImage width={250} height={150} src={item.metadata.pictures[0]} alt={item.name} />}

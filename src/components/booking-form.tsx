@@ -2,8 +2,7 @@
 import { Text, Grid, Col, NumberInput, Button, Card, DateRangePicker, DateRangePickerValue } from "@tremor/react"
 import { UserGroupIcon, HomeIcon, UsersIcon } from "@heroicons/react/24/solid"
 import SellMedia from "./sell-media"
-import useCart from "@/hooks/useCart"
-import { FormEvent, useEffect, useState } from "react"
+import { FormEvent, useState } from "react"
 import { pt } from "date-fns/locale";
 import { setWithExpiry } from "@/utils/helpers"
 import { useRouter } from "next/navigation"
@@ -14,16 +13,12 @@ const BookingForm = () => {
         to: undefined,
     })
     const [error, setError] = useState("")
-    const [loading, isLoading] = useState(false)
-    const [disabled, isDisabled] = useState(false)
-    const {addToCart} = useCart()
     const router = useRouter()
     
     const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         const formData = new FormData(e.currentTarget)
         
-        const id = crypto.randomUUID()
         const {from: checkin, to: checkout} = selectedDayRange
         if (!checkin || !checkout) {
             setError("Escolha as datas de checkin e checkout antes de continuar")
@@ -63,7 +58,6 @@ const BookingForm = () => {
                             enableYearNavigation={true}
                             minDate={new Date()}
                             enableSelect={false}
-                            disabled={disabled}
                         />
                     </Col>
                     <Col>
@@ -77,7 +71,7 @@ const BookingForm = () => {
                     </Col>
                     <Col numColSpanLg={2} className="text-center">
                         {error && <p className="text-primary text-center">{error}</p>}
-                        <Button className="cta" loading={loading}>Ver disponibilidade</Button>
+                        <Button className="cta">Ver disponibilidade</Button>
                     </Col>
                 </Grid>
             </form>
