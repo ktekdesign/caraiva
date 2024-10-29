@@ -1,5 +1,5 @@
 "use client"
-import useSticky from "@/hooks/useSticky"
+import {useSticky} from "hooks"
 import { useEffect } from "react"
 
 const StickyPage = () => {

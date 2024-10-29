@@ -1,16 +1,8 @@
 "use client"
-import Payment from "./payment"
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "./tabs"
 import { initMercadoPago } from "@mercadopago/sdk-react"
 import { useState } from "react"
-import Auth from "./auth"
-import useSupabaseSession from "@/hooks/useSupabaseSession"
-import Status from "./status"
+import {Auth, Status, Tabs, TabsContent, TabsList, TabsTrigger, Payment} from "components"
+import {useSupabaseSession} from "hooks"
 
 const Checkout = () => {
   initMercadoPago(process.env.NEXT_PUBLIC_MERCADO_PAGO_ID || "");

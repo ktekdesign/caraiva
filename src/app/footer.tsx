@@ -1,7 +1,4 @@
-import Copyright from "@/components/copyright";
-import FooterContact from "@/components/footer-contact";
-import Newsletter from "@/components/newsletter";
-import SellMedia from "@/components/sell-media";
+import {Copyright, FooterContact, Newsletter, SellMedia} from "components";
 import { Title, Text } from "@tremor/react";
 
 const Footer = () => (
@@ -20,6 +17,7 @@ const Footer = () => (
         <div className="layout-space-x">
             <Copyright />
         </div>
+        <div className="cf-turnstile" data-sitekey="0x4AAAAAAAxk295gmy85HzjN" data-theme="light" />
     </footer>
 )
 

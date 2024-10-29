@@ -1,7 +1,6 @@
 "use client"
 import { useState } from 'react'
-import Login from '../login'
-import Signup from '../signup'
+import {Login, SignUp} from 'components'
 
 const Auth = ({setActive, isCheckout=false}) => {
   const [toggle, setToggle] = useState(false)
@@ -11,7 +10,7 @@ const Auth = ({setActive, isCheckout=false}) => {
       {toggle || !isCheckout ? 
         <Login setActive={setActive} setToggle={setToggle} isCheckout={isCheckout} />
         :
-        <Signup setActive={setActive} setToggle={setToggle} />
+        <SignUp setActive={setActive} setToggle={setToggle} />
       }
     </>
   )

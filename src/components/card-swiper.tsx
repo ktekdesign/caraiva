@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Autoplay } from 'swiper/modules'
 import { Card } from '@tremor/react'
 import { memo } from 'react'
-import BuyButton from './buy-button'
+import {BuyButton} from 'components'
 import { CldImage } from 'next-cloudinary'
 
 const CardSwiper = ({slides, slidesPerView = 3, cta = false}) => (

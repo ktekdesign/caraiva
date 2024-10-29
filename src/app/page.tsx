@@ -1,11 +1,6 @@
 "use client"
-import Banner from '@/components/banner'
-import Booking from '@/components/booking-form'
-import FloatReservation from '@/components/float-reservation'
-import PhotoGrid from '@/components/photo-grid'
-import SectionTitle from '@/components/section-title'
-import Video from '@/components/video'
-import { photos } from '@/utils/photos'
+import {Banner, BookingForm, FloatReservation, PhotoGrid, SectionTitle, Video} from 'components'
+import { photos } from 'utils/photos'
 import { Col, Grid, Text } from '@tremor/react'
 import {Slide} from 'react-awesome-reveal'
 
@@ -26,7 +21,7 @@ export default function Home() {
                 </Slide>
               </Col>
               <Col>
-                <Booking />
+                <BookingForm />
               </Col>
             </Grid>
           </div>

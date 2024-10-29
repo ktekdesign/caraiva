@@ -1,7 +1,6 @@
 "use client"
 import { Card } from "@tremor/react"
-import SellMedia from "./sell-media"
-import BookingForm from "./booking-form"
+import {SellMedia, BookingForm} from "components"
 
 const Booking = () => (
     <Card className="ring-0">

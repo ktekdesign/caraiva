@@ -1,10 +1,10 @@
 "use client"
 import { Text, Grid, Col, NumberInput, Button, Card, DateRangePicker, DateRangePickerValue } from "@tremor/react"
 import { UserGroupIcon, HomeIcon, UsersIcon } from "@heroicons/react/24/solid"
-import SellMedia from "./sell-media"
+import {SellMedia} from "components"
 import { FormEvent, useState } from "react"
 import { pt } from "date-fns/locale";
-import { setWithExpiry } from "@/utils/helpers"
+import { setWithExpiry } from "utils/helpers"
 import { useRouter } from "next/navigation"
 
 const BookingForm = () => {

@@ -9,10 +9,8 @@ import React, {
   useState,
 } from "react"
 import CartContext, { CartItem } from "./cartContext"
-import Modal from "@/components/modal"
-import Cart from "@/components/cart"
-import { get_unit_amount, getWithExpiry, setWithExpiry } from "@/utils/helpers"
-import Checkout from "@/components/checkout"
+import {Modal, Cart, Checkout} from "components"
+import { get_unit_amount, getWithExpiry, setWithExpiry } from "utils/helpers"
 
 type Props = {
   children: ReactNode

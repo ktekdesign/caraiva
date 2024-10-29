@@ -1,5 +1,5 @@
-import useCart from "@/hooks/useCart";
-import { get_unit_amount } from "@/utils/helpers";
+import {useCart} from "hooks";
+import { get_unit_amount } from "utils/helpers";
 import { Payment } from "@mercadopago/sdk-react";
 import { memo } from "react";
 

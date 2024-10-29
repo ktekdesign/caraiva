@@ -7,7 +7,7 @@ import type { Metadata } from 'next'
 import { Montserrat } from 'next/font/google'
 import Footer from './footer'
 import NextProviders from './providers'
-import SupabaseSessionProvider from '@/context/supabaseSessionProvider'
+import SupabaseSessionProvider from 'context/supabaseSessionProvider'
 
 export const dynamic = 'force-dynamic'
 

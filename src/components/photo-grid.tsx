@@ -1,8 +1,8 @@
 "use client"
-import useLightBox from "@/hooks/useLightBox";
+import {useLightBox} from "hooks";
 import { memo, useMemo } from "react";
 import { CldImage } from 'next-cloudinary';
-import { getImagesUrls } from "@/utils/helpers";
+import { getImagesUrls } from "utils/helpers";
 
 const PhotoGrid = ({photos}) => {
     const {toggler, setToggler, setLightBoxItems} = useLightBox()

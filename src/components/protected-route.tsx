@@ -1,7 +1,6 @@
 import { ReactNode } from "react"
-import ProtectedComponent from "./protected-component"
-import LoginForm from "./login"
-import StickyPage from "./sticky-page"
+import ProtectedComponent from "components/protected-component"
+import {Login, StickyPage} from "components"
 
 export default async function ProtectedRoute ({children} : {children?: ReactNode}) {
 
@@ -9,7 +8,7 @@ export default async function ProtectedRoute ({children} : {children?: ReactNode
         <main>
             <ProtectedComponent>
                 <StickyPage />
-                    <LoginForm setActive={null} setToggle={null} />
+                    <Login setActive={null} setToggle={null} />
                     {children}
             </ProtectedComponent>
         </main>

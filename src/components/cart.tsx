@@ -1,11 +1,11 @@
 "use client"
-import useCart from "@/hooks/useCart"
-import { get_unit_amount, getQuantity } from "@/utils/helpers"
+import {useCart} from "hooks"
+import { get_unit_amount, getQuantity } from "utils/helpers"
 import { XMarkIcon } from "@heroicons/react/24/solid"
 import { Icon } from "@tremor/react"
 import { CldImage } from "next-cloudinary"
 import { memo } from "react"
-import CheckoutButton from "./checkout-button"
+import {CheckoutButton} from "components"
 
 const Cart = () => {
     const {items, removeFromCart, amount} = useCart()

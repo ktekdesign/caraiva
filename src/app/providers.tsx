@@ -1,6 +1,6 @@
-import CartContextProvider from '@/context/cartContextProvider';
-import LightBoxContextProvider from '@/context/lightBoxContextProvider';
-import StickyContextProvider from '@/context/stickyContextProvider'
+import CartContextProvider from 'context/cartContextProvider';
+import LightBoxContextProvider from 'context/lightBoxContextProvider';
+import StickyContextProvider from 'context/stickyContextProvider'
 
 type Props = {
   children?: React.ReactNode;

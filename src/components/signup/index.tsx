@@ -4,8 +4,7 @@ import { useState } from 'react'
 import { Button } from '@tremor/react'
 import { useForm, SubmitHandler } from "react-hook-form"
 import Messages from './messages'
-import useCart from '@/hooks/useCart'
-import Script from 'next/script'
+import {useCart} from 'hooks'
 
 type Inputs = {
   first_name: string
@@ -46,13 +45,11 @@ const SignUpForm = ({setActive, setToggle}) => {
   }
   
   return (
-    <>
-    <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js" defer />
+    <>  
+      {err && <Messages err={err} />}
+      {!user?.user_metadata?.email && <h3 className='heading3'>Já tem uma conta? <Button onClick={() => setToggle(true)}>Login</Button></h3>}
       
-    {err && <Messages err={err} />}
-    {!user?.user_metadata?.email && <h3 className='heading3'>Já tem uma conta? <Button onClick={() => setToggle(true)}>Login</Button></h3>}
-    
-    <form
+      <form
         className="form text-foreground p-4 grid grid-cols-2 gap-2"
         action="/auth/sign-in"
         method="post"
@@ -107,15 +104,13 @@ const SignUpForm = ({setActive, setToggle}) => {
         />
         {errors.phone && <span className='text-primary'>Esse campo é obrigatório</span>}
         </p>
-        <div className="cf-turnstile" data-sitekey="0x4AAAAAAAxk295gmy85HzjN" data-theme="light" />
         <div className='flex flex-wrap justify-center col-span-2 items-center gap-16 mt-4'>
-        <Button className="cta-reverse flex-grow">
-          Ir para pagamento
-        </Button>
-        
+          <Button className="cta-reverse flex-grow">
+            Ir para pagamento
+          </Button>
         </div>
       </form>
-      </>
+    </>
   )
 }
  export default SignUpForm

@@ -1,7 +1,6 @@
 "use client"
-import Modal from '@/components/modal'
-import { useState } from 'react'
-import { use } from 'react'
+import Modal from 'components/modal'
+import { useState, use } from 'react'
 
 type Params = Promise<{ slug: string }>
 

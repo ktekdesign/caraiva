@@ -1,6 +1,6 @@
 "use client"
 import { useState } from "react"
-import VideoPresentation from "./video-presentation"
+import {VideoPresentation} from "components"
 
 const Video = () => {
     const [toggler, setToggler] = useState(false)

@@ -1,5 +1,5 @@
 "use client";
-import SupabaseSession from "@/context/supabaseSession";
+import SupabaseSession from "context/supabaseSession";
 import { useContext } from "react";
 
 const useSupabaseSession = () => {

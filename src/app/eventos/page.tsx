@@ -1,7 +1,5 @@
-import Banner from '@/components/banner'
-import PageTitle from '@/components/page-title'
-import ProductsGrid from '@/components/products-grid'
-import { photos } from '@/utils/photos'
+import {Banner, PageTitle, ProductsGrid} from 'components'
+import { photos } from 'utils/photos'
 import { Col, Grid } from '@tremor/react'
 
 export default function Eventos() {

@@ -1,12 +1,6 @@
 "use client"
-import Banner from '@/components/banner'
-import Booking from '@/components/booking-form'
-import PageTitle from '@/components/page-title'
-import PhotoGrid from '@/components/photo-grid'
-import Rating from '@/components/rating'
-import SectionTitle from '@/components/section-title'
-import SellMedia from '@/components/sell-media'
-import { photos } from '@/utils/photos'
+import {Banner, BookingForm, PageTitle, PhotoGrid, Rating, SectionTitle, SellMedia} from 'components'
+import { photos } from 'utils/photos'
 import { Col, Grid, Text } from '@tremor/react'
 import {Slide} from 'react-awesome-reveal'
 
@@ -80,7 +74,7 @@ export default function Accomodacoes() {
             </div>
             <div>
               <Slide direction='right'>
-                <Booking />
+                <BookingForm />
               </Slide>
             </div>
           </div>

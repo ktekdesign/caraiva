@@ -1,9 +1,9 @@
 "use client"
 import { useState } from "react";
 import { UserIcon } from "@heroicons/react/24/solid";
-import LogoutButton from "./logout-button";
+import {LogoutButton} from "components";
 import Link from "next/link";
-import useCart from "@/hooks/useCart";
+import {useCart} from "hooks";
 
 const LoggedUserMenu = () => {
     const [open, setOpen] = useState(false)

@@ -1,7 +1,6 @@
 "use client";
 import '@taak/react-modern-calendar-datepicker/lib/DatePicker.css';
-import { utils } from "@taak/react-modern-calendar-datepicker";
-import DatePicker from "@taak/react-modern-calendar-datepicker";
+import DatePicker, { utils } from "@taak/react-modern-calendar-datepicker";
 
 const DatePickerElement = ({selectedDayRange, setSelectedDayRange}) => {
     const formatInputValue = () => {

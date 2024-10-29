@@ -1,8 +1,6 @@
 import { Card, Flex, Text } from "@tremor/react";
-import CardSwiper from "./card-swiper";
+import {CardSwiper, Price, BuyButton} from "components";
 import { memo } from "react";
-import Price from "./price";
-import BuyButton from "./buy-button";
 
 const ProductGrid = ({products}) => (
   <Flex className='gap-12 flex-col'>

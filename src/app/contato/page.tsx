@@ -1,7 +1,5 @@
 'use client'
-import Banner from '@/components/banner'
-import Localization from '@/components/localization'
-import PageTitle from '@/components/page-title'
+import {Banner, Localization, PageTitle} from 'components'
 import { Col, Grid } from '@tremor/react'
 
 export default function Contato() {

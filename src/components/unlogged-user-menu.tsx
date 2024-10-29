@@ -1,6 +1,6 @@
 "use client"
 import { useState } from "react";
-import UnLoggedUserMenuPresentation from "./unlogged-user-menu-presentation";
+import {UnLoggedUserMenuPresentation} from "components";
 
 const UnLoggedUserMenu = () => {
     const [open, setOpen] = useState(false)

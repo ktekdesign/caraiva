@@ -1,7 +1,6 @@
 "use client"
-import UnLoggedUserMenu from "./unlogged-user-menu";
-import LoggedUserMenu from "./logged-user-menu";
-import useSupabaseSession from "@/hooks/useSupabaseSession";
+import {UnLoggedUserMenu, LoggedUserMenu} from "components";
+import {useSupabaseSession} from "hooks";
 
 const ProfileButton = () => {
     const {isLogged} = useSupabaseSession()

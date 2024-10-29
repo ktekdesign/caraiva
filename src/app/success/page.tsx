@@ -1,5 +1,5 @@
 "use client";
-import StickyPage from '@/components/sticky-page';
+import {StickyPage} from 'components';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 
